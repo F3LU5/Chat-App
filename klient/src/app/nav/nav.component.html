@@ -1,0 +1,23 @@
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">Chat Internetowy</a>
+      
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link">Zaproszenia</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Lista znajomych</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Wiadomości</a>
+          </li>
+        </ul>
+        <form #FormularzLogowania="ngForm" (ngSubmit)="login()" class="d-flex" autocomplete="off">
+          <input name="nazwauzytkownika" [(ngModel)]="model.username" class="form-control me-2" type="text" placeholder="Nazwa Użytkownika">
+          <input name="haslo" [(ngModel)]="model.password " class="form-control me-2" type="text" placeholder="Hasło" type="password">
+          <button class="btn btn-outline-success" type="submit">Zaloguj</button>
+        </form>
+      </div>
+  </nav>

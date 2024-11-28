@@ -263,3 +263,4 @@ E:\development\Chat-App-frontend-backend-database-connect\API\bin\Debug\net8.0\S
 E:\development\Chat-App-frontend-backend-database-connect\API\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 E:\development\Chat-App-frontend-backend-database-connect\API\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
 E:\development\Chat-App-frontend-backend-database-connect\API\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+E:\development\Chat-App-frontend-backend-database-connect\API\obj\Debug\net8.0\API.sourcelink.json
