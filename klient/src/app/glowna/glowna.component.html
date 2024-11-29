@@ -1,0 +1,21 @@
+<div class="div container mt-5">
+    <div style="text-align: center;">
+
+        @if (!rejestracja) {
+            <h1>JESZCZE NIE NAJLEPSZA APLIKACJA CHATOWA </h1>
+        <p class="lead">Ale może taka będzie...</p>
+        <div class="text-center">
+            <button (click)="rejestracjaToggle()" class="btn btn-primary btn-lg me-2">Rejestracja</button>
+            <button class="btn btn-info btn-lg me-2">Dowiedz sie wiecej</button>
+        </div>
+        } @else {
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-4">
+                        <app-rejestracja></app-rejestracja>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

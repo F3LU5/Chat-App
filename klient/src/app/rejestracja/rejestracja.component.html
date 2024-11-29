@@ -1,0 +1,16 @@
+<form #formularzrej="ngForm" (ngSubmit)="rejestracja()" autocomplete="off">
+    <h2 class="text-center text-primary">Rejestracja</h2>
+    <hr>
+    <div class="mb-3 form-floating">
+        <input type="text" class="form-control" name="NazwaUzytkownika" [(ngModel)]="model.haslo" placeholder="nazwauzytkonika">
+        <label>Nazwa Uzytkownika</label>
+    </div>
+    <div class="mb-3 form-floating">
+        <input class="form-control" type="password" name="haslo" [(ngModel)]="model.username" placeholder="Haslo">
+        <label>Hasło</label>
+    </div>
+    <div class="form-group text-center">
+        <button class="btn btn-success me-2" type="submit">Zarejestruj</button>
+        <button class="btn btn-default me-2" (click)="anuluj()" type="button">Anuluj Rejestracje</button>
+    </div>
+</form>
