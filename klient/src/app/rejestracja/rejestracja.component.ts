@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, inject, input, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { AccountService } from '../_uslugi/account.service';
 
 @Component({
   selector: 'app-rejestracja',
@@ -9,12 +10,20 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './rejestracja.component.css'
 })
 export class RejestracjaComponent {
+  private accountService = inject(AccountService);
+  @Output() anulujRejestracje = new EventEmitter();
   model: any = {}
 
   rejestracja(){
-    console.log(this.model);
+    this.accountService.register(this.model).subscribe({
+      next: response => {
+        console.log(response);
+        this.anuluj();
+      },
+      error: error => console.log(error)
+    })
   }
   anuluj(){
-    console.log('anulowano');
+    this.anulujRejestracje.emit(false);
   }
 }

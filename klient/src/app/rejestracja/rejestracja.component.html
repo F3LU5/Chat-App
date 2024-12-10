@@ -2,11 +2,12 @@
     <h2 class="text-center text-primary">Rejestracja</h2>
     <hr>
     <div class="mb-3 form-floating">
-        <input type="text" class="form-control" name="NazwaUzytkownika" [(ngModel)]="model.haslo" placeholder="nazwauzytkonika">
+        <input type="text" class="form-control" name="haslo" [(ngModel)]="model.UserName" placeholder="Haslo">
         <label>Nazwa Uzytkownika</label>
     </div>
+
     <div class="mb-3 form-floating">
-        <input class="form-control" type="password" name="haslo" [(ngModel)]="model.username" placeholder="Haslo">
+        <input class="form-control" type="password" name="NazwaUzytkownika" [(ngModel)]="model.Password" placeholder="nazwauzytkonika">
         <label>Hasło</label>
     </div>
     <div class="form-group text-center">

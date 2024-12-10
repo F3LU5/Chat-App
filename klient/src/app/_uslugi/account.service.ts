@@ -21,6 +21,18 @@ export class AccountService {
 
   }
 
+  register(model: any) {
+    console.log(model);
+    return this.http.post<User>(this.bazoweURL + 'account/register', model).pipe(map(user => {
+      if (user) {
+        localStorage.setItem('user', JSON.stringify(user))
+        this.aktualnyUzytkownik.set(user);
+      }
+      return user;
+    }))
+
+  }
+
   wyloguj(){
     localStorage.removeItem('user');
     this.aktualnyUzytkownik.set(null);
