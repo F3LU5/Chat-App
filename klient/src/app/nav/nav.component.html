@@ -1,18 +1,18 @@
 
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container">
-      <a class="navbar-brand" href="#">Chat Internetowy</a>
+      <a class="navbar-brand" routerLink="/" routerLinkActive="active">Chat Internetowy</a>
       
-      @if (ObslugaKonta.aktualnyUzytkownik()){
+      @if (true){
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
-            <a class="nav-link">Zaproszenia</a>
+            <a routerLink="/members" routerLinkActive="active" class="nav-link">Zaproszenia</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link">Lista znajomych</a>
+            <a routerLink="/listy" routerLinkActive="active" class="nav-link">Lista znajomych</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link">Wiadomości</a>
+            <a routerLink="/wiadomosci" routerLinkActive="active" class="nav-link">Wiadomości</a>
           </li>
         </ul>
       } 

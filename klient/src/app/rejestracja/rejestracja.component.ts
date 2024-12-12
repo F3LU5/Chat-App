@@ -1,6 +1,7 @@
 import { Component, EventEmitter, inject, input, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AccountService } from '../_uslugi/account.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-rejestracja',
@@ -11,6 +12,7 @@ import { AccountService } from '../_uslugi/account.service';
 })
 export class RejestracjaComponent {
   private accountService = inject(AccountService);
+  private toaser = inject(ToastrService);
   @Output() anulujRejestracje = new EventEmitter();
   model: any = {}
 
@@ -20,7 +22,7 @@ export class RejestracjaComponent {
         console.log(response);
         this.anuluj();
       },
-      error: error => console.log(error)
+      error: error => this.toaser.error(error.error)
     })
   }
   anuluj(){
