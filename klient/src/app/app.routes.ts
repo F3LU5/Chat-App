@@ -8,9 +8,16 @@ import { autoryzacjaGuard } from './guards/autoryzacja.guard';
 
 export const routes: Routes = [
     {path: '', component: GlownaComponent},
-    {path: 'members', component: ListofmemberComponent, canActivate: [autoryzacjaGuard]},
-    {path: 'znajomi/:id', component: MemberdetailComponent},
-    {path: 'listy', component: ListyComponent},
-    {path: 'wiadomosci', component: WiadomosciComponent},
+    {
+        path: '',
+        runGuardsAndResolvers: 'always',
+        canActivate: [autoryzacjaGuard],
+        children: [
+            {path: 'members', component: ListofmemberComponent, canActivate: [autoryzacjaGuard]},
+            {path: 'znajomi/:id', component: MemberdetailComponent},
+            {path: 'listy', component: ListyComponent},
+            {path: 'wiadomosci', component: WiadomosciComponent},
+        ]
+    },
     {path: '**', component: GlownaComponent, pathMatch: 'full'},
 ];

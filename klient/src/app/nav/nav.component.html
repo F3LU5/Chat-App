@@ -3,8 +3,9 @@
     <div class="container">
       <a class="navbar-brand" routerLink="/" routerLinkActive="active">Chat Internetowy</a>
       
-      @if (true){
+
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          @if (ObslugaKonta.aktualnyUzytkownik()){
           <li class="nav-item">
             <a routerLink="/members" routerLinkActive="active" class="nav-link">Zaproszenia</a>
           </li>
@@ -14,12 +15,13 @@
           <li class="nav-item">
             <a routerLink="/wiadomosci" routerLinkActive="active" class="nav-link">Wiadomości</a>
           </li>
+        }
         </ul>
-      } 
+      
       
       @if (ObslugaKonta.aktualnyUzytkownik()){
         <div dropdown class="dropdown">
-            <a dropdownToggle class="dropdown-toggle text-light text-decoration-none">Witaj Użytkowniku</a>
+            <a dropdownToggle class="dropdown-toggle text-light text-decoration-none">Witaj {{ObslugaKonta.aktualnyUzytkownik()?.username | titlecase}}</a>
             <div *dropdownMenu class="dropdown-menu">
                 <a class="dropdown-item">Edytuj Profil</a>
                 <div class="dropdown-divider"></div>
