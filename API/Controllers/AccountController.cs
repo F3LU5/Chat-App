@@ -18,20 +18,22 @@ public class AccountController(DataContext context, UslugiToken uslugiToken) : B
 
         if (await Istnieje(regDTO.UserName)) 
         return BadRequest("Nazwa użytkownika jest zajęta");
-        using var hmac = new HMACSHA512();
 
-        var user = new AppUser{
-            UserName = regDTO.UserName.ToLower(),
-            hashaslo = hmac.ComputeHash(Encoding.UTF8.GetBytes(regDTO.Password)),
-            salthaslo = hmac.Key
-        };
-        context.Users.Add(user);
-        await context.SaveChangesAsync();
-        return new UzytkownikDTO
-        {
-            Username = user.UserName,
-            Token = uslugiToken.StworzToken(user)
-        };
+        return Ok();
+        // using var hmac = new HMACSHA512();
+
+        // var user = new AppUser{
+        //     UserName = regDTO.UserName.ToLower(),
+        //     hashaslo = hmac.ComputeHash(Encoding.UTF8.GetBytes(regDTO.Password)),
+        //     salthaslo = hmac.Key
+        // };
+        // context.Users.Add(user);
+        // await context.SaveChangesAsync();
+        // return new UzytkownikDTO
+        // {
+        //     Username = user.UserName,
+        //     Token = uslugiToken.StworzToken(user)
+        // };
     }
 
     [HttpPost("login")]

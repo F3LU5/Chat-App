@@ -18,7 +18,8 @@ public static class RozszerzeniaAplikacji
 
         services.AddCors();
         services.AddScoped<UslugiToken, TokenService>();
-
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         return services;
     }
 }

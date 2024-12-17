@@ -264,3 +264,5 @@ E:\development\Chat-App-frontend-backend-database-connect\API\bin\Debug\net8.0\M
 E:\development\Chat-App-frontend-backend-database-connect\API\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
 E:\development\Chat-App-frontend-backend-database-connect\API\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 E:\development\Chat-App-frontend-backend-database-connect\API\obj\Debug\net8.0\API.sourcelink.json
+E:\development\Chat-App-frontend-backend-database-connect\API\bin\Debug\net8.0\Data\UserSeedData.json
+E:\development\Chat-App-frontend-backend-database-connect\API\bin\Debug\net8.0\AutoMapper.dll
