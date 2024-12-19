@@ -5,6 +5,8 @@ import { MemberdetailComponent } from './members/memberdetail/memberdetail.compo
 import { ListyComponent } from './listy/listy.component';
 import { WiadomosciComponent } from './wiadomosci/wiadomosci.component';
 import { autoryzacjaGuard } from './guards/autoryzacja.guard';
+import { MembereditComponent } from './members/memberedit/memberedit.component';
+import { niezapisaneZmianyGuard } from './guards/niezapisane-zmiany.guard';
 
 export const routes: Routes = [
     {path: '', component: GlownaComponent},
@@ -15,6 +17,7 @@ export const routes: Routes = [
         children: [
             {path: 'members', component: ListofmemberComponent, canActivate: [autoryzacjaGuard]},
             {path: 'znajomi/:username', component: MemberdetailComponent},
+            {path: 'znajomy/edit', component: MembereditComponent, canDeactivate: [niezapisaneZmianyGuard]},
             {path: 'listy', component: ListyComponent},
             {path: 'wiadomosci', component: WiadomosciComponent},
         ]

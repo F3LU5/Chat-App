@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\development\\Chat-App-frontend-backend-database-connect\\API\\API.csproj": {}
+    "E:\\development\\tu\\Chat-App\\API\\API.csproj": {}
   },
   "projects": {
-    "E:\\development\\Chat-App-frontend-backend-database-connect\\API\\API.csproj": {
+    "E:\\development\\tu\\Chat-App\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\development\\Chat-App-frontend-backend-database-connect\\API\\API.csproj",
+        "projectUniqueName": "E:\\development\\tu\\Chat-App\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "E:\\development\\Chat-App-frontend-backend-database-connect\\API\\API.csproj",
+        "projectPath": "E:\\development\\tu\\Chat-App\\API\\API.csproj",
         "packagesPath": "C:\\Users\\Tomek\\.nuget\\packages\\",
-        "outputPath": "E:\\development\\Chat-App-frontend-backend-database-connect\\API\\obj\\",
+        "outputPath": "E:\\development\\tu\\Chat-App\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Tomek\\AppData\\Roaming\\NuGet\\NuGet.Config"
