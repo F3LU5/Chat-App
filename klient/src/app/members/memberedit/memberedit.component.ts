@@ -1,4 +1,4 @@
-import { Component, Inject, inject, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, Inject, inject, OnInit, ViewChild } from '@angular/core';
 import { Uzytkownik } from '../../_modele/uzytkownik';
 import { AccountService } from '../../_uslugi/account.service';
 import { UzytkownicyService } from '../../_uslugi/uzytkownicy.service';
@@ -15,6 +15,12 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class MembereditComponent implements OnInit{
   @ViewChild('editForm') editForm?: NgForm;
+  @HostListener('window:beforeunload', ['$event']) powiadomienie($event:any){
+    if (this.editForm?.dirty){
+      $event.returnValue = true
+    }
+  }
+
   member?: Uzytkownik;
   private accountService = inject(AccountService);
   private memberService = inject(UzytkownicyService);
@@ -32,9 +38,18 @@ export class MembereditComponent implements OnInit{
   }
 
   updateMember(){
-    console.log(this.member);
-    this.toastr.success('Profil został pomyślnie zaktualizowany')
-    this.editForm?.reset(this.member);
+    if (!this.member) return;
+    this.memberService.updateMember(this.member).subscribe({
+      next: _ => {
+        this.toastr.success('Profil został pomyślnie zaktualizowany');
+        this.editForm?.reset(this.member); 
+      },
+      error: err => {
+        this.toastr.error('Wystąpił błąd podczas zapisywania danych');
+        console.error(err); 
+      }
+    });
   }
+  
 }
 

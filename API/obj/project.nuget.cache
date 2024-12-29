@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vLzqUGst8Vk=",
+  "dgSpecHash": "cit0d23lY9I=",
   "success": true,
-  "projectFilePath": "E:\\development\\tu\\Chat-App\\API\\API.csproj",
+  "projectFilePath": "E:\\development\\aktualne 29.12\\Chat-App\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Tomek\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\Tomek\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

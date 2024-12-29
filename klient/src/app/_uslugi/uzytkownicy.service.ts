@@ -19,5 +19,7 @@ export class UzytkownicyService {
   getMember(username: string){
     return this.http.get<Uzytkownik>(this.bazoweUrl + 'users/' + username);
   }
-
+  updateMember(member: Uzytkownik) {
+    return this.http.put(this.bazoweUrl + 'users', member);
+  }
 }
