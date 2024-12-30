@@ -544,3 +544,5 @@ E:\development\aktualne 29.12\Chat-App\API\obj\Debug\net8.0\refint\API.dll
 E:\development\aktualne 29.12\Chat-App\API\obj\Debug\net8.0\API.pdb
 E:\development\aktualne 29.12\Chat-App\API\obj\Debug\net8.0\API.genruntimeconfig.cache
 E:\development\aktualne 29.12\Chat-App\API\obj\Debug\net8.0\ref\API.dll
+E:\development\aktualne 29.12\Chat-App\API\bin\Debug\net8.0\CloudinaryDotNet.dll
+E:\development\aktualne 29.12\Chat-App\API\bin\Debug\net8.0\Newtonsoft.Json.dll

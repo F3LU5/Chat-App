@@ -1,6 +1,7 @@
 using System;
 using API.Data;
 using API.Interfejsy;
+using API.Pomoc;
 using API.Uslugi;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,7 +20,9 @@ public static class RozszerzeniaAplikacji
         services.AddCors();
         services.AddScoped<UslugiToken, TokenService>();
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<DodawanieZdjeciaService, ZdjecieService>();
         services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+        services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
         return services;
     }
 }
