@@ -5,11 +5,12 @@ import { UzytkownicyService } from '../../_uslugi/uzytkownicy.service';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { ZdjprofeditorComponent } from "../zdjprofeditor/zdjprofeditor.component";
 
 @Component({
   selector: 'app-memberedit',
   standalone: true,
-  imports: [TabsModule, FormsModule],
+  imports: [TabsModule, FormsModule, ZdjprofeditorComponent],
   templateUrl: './memberedit.component.html',
   styleUrl: './memberedit.component.css'
 })

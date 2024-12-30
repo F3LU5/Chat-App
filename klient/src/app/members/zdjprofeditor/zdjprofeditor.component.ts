@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { Uzytkownik } from '../../_modele/uzytkownik';
 
 @Component({
   selector: 'app-zdjprofeditor',
@@ -8,5 +9,5 @@ import { Component } from '@angular/core';
   styleUrl: './zdjprofeditor.component.css'
 })
 export class ZdjprofeditorComponent {
-
+  member = input.required<Uzytkownik>();
 }
