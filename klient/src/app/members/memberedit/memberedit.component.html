@@ -53,7 +53,7 @@
                     </form>
                 </tab>
                 <tab heading="Edit photos">
-                    <app-zdjprofeditor [member]="member"></app-zdjprofeditor>
+                    <app-zdjprofeditor [member]="member" (memberChange)="onMemberChange($event)"></app-zdjprofeditor>
                 </tab>
             </tabset>
         </div>

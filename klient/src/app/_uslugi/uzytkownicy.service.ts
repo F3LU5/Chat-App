@@ -3,6 +3,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Uzytkownik } from '../_modele/uzytkownik';
 import { of, tap } from 'rxjs';
+import { zdjecia } from '../_modele/zdjecie';
 
 
 @Injectable({
@@ -31,5 +32,21 @@ export class UzytkownicyService {
         this.uzytkownicy.update(uzytkownicy => uzytkownicy.map(b => b.username === member.username ? member: b))
       })
     )
+  }
+
+  ustawGlowneZdjecie(photo: zdjecia){
+    return this.http.put(this.bazoweUrl + 'users/ustaw-glowne-zdjecie/' + photo.id, {}).pipe(
+      tap(() => {
+        this.uzytkownicy.update(uzytkownicy => uzytkownicy.map(m => {
+          if(m.zdjecia.includes(photo)) {
+            m.zdjecieUrl = photo.url
+          }
+          return m;
+        }))
+      })
+    )
+  }
+  usunZdjecie(photoId: number){
+    return this.http.delete(this.bazoweUrl + 'users/usun-zdjecie/' + photoId);
   }
 }

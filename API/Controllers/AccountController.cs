@@ -39,7 +39,9 @@ public class AccountController(DataContext context, UslugiToken uslugiToken) : B
     [HttpPost("login")]
     public async Task<ActionResult<UzytkownikDTO>> Login(LoginDTO loginDTO){
 
-        var user = await context.Users.FirstOrDefaultAsync(x => x.UserName == loginDTO.UserName.ToLower());
+        var user = await context.Users
+        .Include(p => p.Zdjecia)
+            .FirstOrDefaultAsync(x => x.UserName == loginDTO.UserName.ToLower());
         if(user == null) 
         return Unauthorized("Niepoprawny Login lub hasło");
 
@@ -55,7 +57,8 @@ public class AccountController(DataContext context, UslugiToken uslugiToken) : B
         return new UzytkownikDTO
         {
             Username = user.UserName,
-            Token = uslugiToken.StworzToken(user)
+            Token = uslugiToken.StworzToken(user),
+            ZdjecieUrl = user.Zdjecia.FirstOrDefault(a => a.Glownezdj)?.Url
         };
     }
     

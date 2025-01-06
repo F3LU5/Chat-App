@@ -6,6 +6,7 @@ using API.Rozszerzenia;
 using API.Uslugi;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -60,4 +61,33 @@ public class UsersController(IUserRepository userRepository, IMapper mapper, Dod
         return CreatedAtAction(nameof(GetUser), new {username = user.UserName}, mapper.Map<ZdjecieDto>(photo));
         return BadRequest("Problem z dodaniem zdjecia");
     }
+    [HttpPut("ustaw-glowne-zdjecie/{photoId:int}")]
+     public async Task<ActionResult> ustawGlowneZdjecie(int photoId)
+     {
+        var user = await userRepository.GetUserByUsernameAsync(User.GetUsername());
+        if (user ==null) return BadRequest("nie mozna znalezc uzytkownika");
+        var zdjecie = user.Zdjecia.FirstOrDefault(a => a.Id == photoId);
+        if(zdjecie == null || zdjecie.Glownezdj) return BadRequest("Nie mozna uzyc jako głowne zdjęcie");
+        var PoprawneGlowne = user.Zdjecia.FirstOrDefault(a => a.Glownezdj);
+        if(PoprawneGlowne != null) PoprawneGlowne.Glownezdj = false;
+        zdjecie.Glownezdj = true;
+        if(await userRepository.ZapiszWszystkieAsync()) return NoContent();
+        return BadRequest("Problem z ustawieniem Głownego zdjecia");
+     }
+
+     [HttpDelete("usun-zdjecie/{photoId:int}")]
+     public async Task<ActionResult> UsunZdjecie(int photoId){
+        var user = await userRepository.GetUserByUsernameAsync(User.GetUsername());
+        if(user == null) return BadRequest("Uzytkownik nie został znaleziony");
+        var zdjecie = user.Zdjecia.FirstOrDefault(b => b.Id == photoId);
+        if (zdjecie == null || zdjecie.Glownezdj) return BadRequest("To zdjecie nie moze zostać usunięte");
+        if(zdjecie.PublicId != null)
+        {
+            var rezultat = await dodawanieZdjecia.DeleteZdjecieAsync(zdjecie.PublicId);
+            if (rezultat.Error != null) return BadRequest(rezultat.Error.Message);
+        }
+        user.Zdjecia.Remove(zdjecie);
+        if(await userRepository.ZapiszWszystkieAsync()) return Ok();
+        return BadRequest("Problem z usunieciem zdjęcia");
+     }
 }

@@ -51,6 +51,9 @@ export class MembereditComponent implements OnInit{
       }
     });
   }
+  onMemberChange(event: Uzytkownik){
+    this.member = event;
+  }
   
 }
 

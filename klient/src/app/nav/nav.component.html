@@ -21,6 +21,7 @@
       
       @if (ObslugaKonta.aktualnyUzytkownik()){
         <div dropdown class="dropdown">
+          <img class="me-2" src="{{ObslugaKonta.aktualnyUzytkownik()?.zdjecieUrl || 'user.jpg'}}" alt="Główne zdjęcie użytkownika">
             <a dropdownToggle class="dropdown-toggle text-light text-decoration-none">Witaj {{ObslugaKonta.aktualnyUzytkownik()?.username | titlecase}}</a>
             <div *dropdownMenu class="dropdown-menu">
                 <a routerLink="/znajomy/edit" class="dropdown-item">Edytuj Profil</a>

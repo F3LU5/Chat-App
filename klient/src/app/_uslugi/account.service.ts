@@ -15,8 +15,7 @@ export class AccountService {
   login(model: any) {
     return this.http.post<User>(this.bazoweURL + 'account/login', model).pipe(map(user => {
       if (user) {
-        localStorage.setItem('user', JSON.stringify(user))
-        this.aktualnyUzytkownik.set(user);
+        this.ustawAktualnegoUzytkownika(user);
       }
     }))
 
@@ -26,12 +25,16 @@ export class AccountService {
     console.log(model);
     return this.http.post<User>(this.bazoweURL + 'account/register', model).pipe(map(user => {
       if (user) {
-        localStorage.setItem('user', JSON.stringify(user))
-        this.aktualnyUzytkownik.set(user);
+        this.ustawAktualnegoUzytkownika(user);
       }
       return user;
     }))
 
+  }
+
+  ustawAktualnegoUzytkownika(user: User){
+    localStorage.setItem('user', JSON.stringify(user))
+      this.aktualnyUzytkownik.set(user);
   }
 
   wyloguj(){
