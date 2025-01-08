@@ -15,7 +15,7 @@ public class RegDTO
     public string? DataUrodzenia {get; set;}
     [Required] public string? Plec {get; set;}
     [Required] public string? Kraj {get; set;}
-    [Required] public string? Miasto {get; set;} =string.Empty;
+    [Required] public string? Miasto {get; set;}
     
 
     [Required]

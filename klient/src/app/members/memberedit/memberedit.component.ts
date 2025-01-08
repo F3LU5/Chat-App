@@ -38,6 +38,7 @@ export class MembereditComponent implements OnInit{
     })
   }
 
+
   updateMember(){
     if (!this.member) return;
     this.memberService.updateMember(this.member).subscribe({

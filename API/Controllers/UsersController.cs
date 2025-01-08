@@ -56,6 +56,8 @@ public class UsersController(IUserRepository userRepository, IMapper mapper, Dod
             Url = result.SecureUrl.AbsoluteUri,
             PublicId = result.PublicId
         };
+        if(user.Zdjecia.Count == 0) photo.Glownezdj =true;
+
         user.Zdjecia.Add(photo);
         if (await userRepository.ZapiszWszystkieAsync()) 
         return CreatedAtAction(nameof(GetUser), new {username = user.UserName}, mapper.Map<ZdjecieDto>(photo));

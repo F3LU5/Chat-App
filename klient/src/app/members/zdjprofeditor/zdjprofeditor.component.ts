@@ -73,6 +73,20 @@ export class ZdjprofeditorComponent implements OnInit{
       const zaktualizowanyuzytkownik = {...this.member()}
       zaktualizowanyuzytkownik.zdjecia.push(photo);
       this.memberChange.emit(zaktualizowanyuzytkownik);
+      if(photo.glownezdj){
+        const user = this.accService.aktualnyUzytkownik();
+        if(user){
+          user.zdjecieUrl = photo.url;
+          this.accService.ustawAktualnegoUzytkownika(user)
+        }
+        zaktualizowanyuzytkownik.zdjecieUrl = photo.url;
+        zaktualizowanyuzytkownik.zdjecia.forEach(a => {
+          if(a.glownezdj) a.glownezdj = false;
+          if(a.id === photo.id) a.glownezdj = true;
+        });
+        this.memberChange.emit(zaktualizowanyuzytkownik);
+      }
+      }
     }
   }
-}
+

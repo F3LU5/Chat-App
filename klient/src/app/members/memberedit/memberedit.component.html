@@ -20,8 +20,8 @@
                         <p>{{member.miasto}}</p>
                     </div>
                     <div>
-                        <strong>Numer telefonu:</strong>
-                        <p>{{member.miasto}}</p>
+                        <strong>Numer Telefonu:</strong>
+                        <p>{{member.kraj}}</p>
                     </div>
                     <div>
                         <strong>Wiek:</strong>
@@ -47,7 +47,7 @@
                     <form id="editForm"  #editForm="ngForm" (ngSubmit)="updateMember()">
                       
                     <h4 class="mt-2">O pracy</h4>
-                    <textarea class="form-control"  name="wstep" [(ngModel)]="member.onas" rows="6"></textarea>
+                    <textarea class="form-control"  name="wstep" [(ngModel)]="member.wstep" rows="6"></textarea>
                     <h4 class="mt-2">Location Details</h4>
                     <div class="d-flex align-items-center">
                         <label>Praca: </label>
