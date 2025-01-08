@@ -6,12 +6,13 @@ using API.DataTransferObject;
 using API.Entities;
 using API.Interfejsy;
 using API.Uslugi;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers;
 
-public class AccountController(DataContext context, UslugiToken uslugiToken) : BaseApiController
+public class AccountController(DataContext context, UslugiToken uslugiToken, IMapper mapper) : BaseApiController
 {
     [HttpPost("register")] //account/register
     public async Task<ActionResult<UzytkownikDTO>> Register(RegDTO regDTO){
@@ -19,21 +20,21 @@ public class AccountController(DataContext context, UslugiToken uslugiToken) : B
         if (await Istnieje(regDTO.UserName)) 
         return BadRequest("Nazwa użytkownika jest zajęta");
 
-        return Ok();
-        // using var hmac = new HMACSHA512();
+        using var hmac = new HMACSHA512();
 
-        // var user = new AppUser{
-        //     UserName = regDTO.UserName.ToLower(),
-        //     hashaslo = hmac.ComputeHash(Encoding.UTF8.GetBytes(regDTO.Password)),
-        //     salthaslo = hmac.Key
-        // };
-        // context.Users.Add(user);
-        // await context.SaveChangesAsync();
-        // return new UzytkownikDTO
-        // {
-        //     Username = user.UserName,
-        //     Token = uslugiToken.StworzToken(user)
-        // };
+        var user = mapper.Map<AppUser>(regDTO);
+        user.UserName = regDTO.UserName.ToLower();
+        user.hashaslo = hmac.ComputeHash(Encoding.UTF8.GetBytes(regDTO.Password));
+        user.salthaslo = hmac.Key;
+
+        context.Users.Add(user);
+        await context.SaveChangesAsync();
+        return new UzytkownikDTO
+        {
+            Username = user.UserName,
+            Token = uslugiToken.StworzToken(user),
+            Onas = user.Onas
+        };
     }
 
     [HttpPost("login")]
@@ -57,6 +58,7 @@ public class AccountController(DataContext context, UslugiToken uslugiToken) : B
         return new UzytkownikDTO
         {
             Username = user.UserName,
+            Onas = user.Onas,
             Token = uslugiToken.StworzToken(user),
             ZdjecieUrl = user.Zdjecia.FirstOrDefault(a => a.Glownezdj)?.Url
         };

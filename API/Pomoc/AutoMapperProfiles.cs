@@ -15,5 +15,7 @@ public class AutoMapperProfiles: Profile
         .ForMember(a => a.ZdjecieUrl, b => b.MapFrom(c => c.Zdjecia.FirstOrDefault(d => d.Glownezdj)!.Url));
         CreateMap<Zdjecie, ZdjecieDto>();
         CreateMap<AktualizacjaCzlonkaDTO, AppUser>();
+        CreateMap<RegDTO, AppUser>();
+        CreateMap<string, DateOnly>().ConstructUsing(s => DateOnly.Parse(s));
     }
 }

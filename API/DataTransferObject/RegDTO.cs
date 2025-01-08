@@ -6,8 +6,19 @@ namespace API.DataTransferObject;
 public class RegDTO
 {
     [Required]
-    [MaxLength(100)]
-    public required string UserName { get; set; }
+    
+    public string UserName { get; set; } = string.Empty;
+
+    [Required] public string? Onas {get; set;}
+    [Required] 
+    [DataType(DataType.Date)]
+    public string? DataUrodzenia {get; set;}
+    [Required] public string? Plec {get; set;}
+    [Required] public string? Kraj {get; set;}
+    [Required] public string? Miasto {get; set;} =string.Empty;
+    
+
     [Required]
-    public required string Password { get; set; }
+    [StringLength(16, MinimumLength = 4)]
+    public string Password { get; set; } = string.Empty;
 }
