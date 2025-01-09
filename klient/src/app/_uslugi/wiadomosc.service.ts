@@ -23,4 +23,8 @@ export class WiadomoscService {
         next: response => setPaginatedResponse(response, this.wynikPaginacji)
       })
   }
+
+  getMessageThread(username: string){
+    return this.http.get<Wiadomosc[]>(this.bazoweUrl + 'messages/thread/' + username);
+  }
 }

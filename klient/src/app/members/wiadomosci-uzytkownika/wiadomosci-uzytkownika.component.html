@@ -1,0 +1,51 @@
+<div class="card">
+    <div class="card-body">
+        @if (messages.length === 0) {
+            <p>Nie ma jeszcze Wiadomości</p>
+        }
+        @else {
+            <ul class="chat">
+                @for (message of messages; track message.id) {
+                    <li class="{{message.senderUsername === username() ? 'sent' : 'received'}}">
+                        <div class="chat-container">
+                            @if (message.senderUsername !== username()) {
+                                <span class="chat-img">
+                                    <img class="rounded-circle" src="{{message.senderPhotoUrl}}" alt="zdjęcie nadawcy">
+                                </span>
+                            }
+                            <div class="chat-body">
+                                <div class="message-content">
+                                    <p>{{message.content}}</p>
+                                    <small class="text-muted">
+                                        {{formatMessageDate(message.messageSent)}}
+                                        @if (!message.dateRead && message.senderUsername !== username()) {
+                                            <span class="text-danger">nieprzeczytane</span>
+                                        }
+                                        @if (message.dateRead && message.senderUsername !== username()) {
+                                            <span class="text-success">przeczytane</span>
+                                        }
+                                    </small>
+                                </div>
+                            </div>
+                            @if (message.senderUsername === username()) {
+                                <span class="chat-img">
+                                    <img class="rounded-circle" src="{{message.senderPhotoUrl}}" alt="zdjęcie nadawcy">
+                                </span>
+                            }
+                        </div>
+                    </li>
+                }
+            </ul>
+        }
+    </div>
+    <div class="card-footer">
+        <form>
+            <div class="input-group">
+                <input type="text" class="form-control input-sm" placeholder="Wyślij wiadomość">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Wyślij</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

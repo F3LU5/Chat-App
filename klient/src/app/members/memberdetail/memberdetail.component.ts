@@ -3,11 +3,12 @@ import { UzytkownicyService } from '../../_uslugi/uzytkownicy.service';
 import { ActivatedRoute } from '@angular/router';
 import { Uzytkownik } from '../../_modele/uzytkownik';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { WiadomosciUzytkownikaComponent } from "../wiadomosci-uzytkownika/wiadomosci-uzytkownika.component";
 
 @Component({
   selector: 'app-memberdetail',
   standalone: true,
-  imports: [TabsModule],
+  imports: [TabsModule, WiadomosciUzytkownikaComponent],
   templateUrl: './memberdetail.component.html',
   styleUrl: './memberdetail.component.css'
 })
@@ -19,6 +20,8 @@ export class MemberdetailComponent implements OnInit{
   ngOnInit(): void {
     this.loadMember()
   }
+
+  
   loadMember(){
     const username = this.route.snapshot.paramMap.get('username');
     if(!username) return;
