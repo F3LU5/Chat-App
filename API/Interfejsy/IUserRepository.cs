@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel;
 using API.DataTransferObject;
 using API.Entities;
+using API.Pomoc;
 
 namespace API.Uslugi;
 
@@ -13,7 +14,7 @@ public interface IUserRepository
 
     Task<AppUser?> GetUserByIDAsync(int id);
     Task<AppUser?> GetUserByUsernameAsync(string username);
-    Task<IEnumerable<MemberDTO>> GetMembersAsync();
+    Task<ListaStron<MemberDTO>> GetMembersAsync(WartoscUzytkownika wartoscUzytkownika);
     Task<MemberDTO?> GetMemberAsync(string username);
     object GetUserByUsernameAsync(object username);
 }

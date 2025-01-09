@@ -21,8 +21,10 @@ public static class RozszerzeniaAplikacji
         services.AddScoped<UslugiToken, TokenService>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<DodawanieZdjeciaService, ZdjecieService>();
+        services.AddScoped<IMessageRepo, MessageRepo>();
         services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
+
         return services;
     }
 }

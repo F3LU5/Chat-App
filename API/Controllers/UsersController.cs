@@ -2,6 +2,7 @@ using System.Security.Claims;
 using API.DataTransferObject;
 using API.Entities;
 using API.Interfejsy;
+using API.Pomoc;
 using API.Rozszerzenia;
 using API.Uslugi;
 using AutoMapper;
@@ -14,10 +15,10 @@ namespace API.Controllers;
 public class UsersController(IUserRepository userRepository, IMapper mapper, DodawanieZdjeciaService dodawanieZdjecia) : BaseApiController
 {
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<MemberDTO>>> GetUsers()
+    public async Task<ActionResult<IEnumerable<MemberDTO>>> GetUsers([FromQuery]WartoscUzytkownika wartoscUzytkownika)
     {
-        var users = await userRepository.GetMembersAsync();
-
+        var users = await userRepository.GetMembersAsync(wartoscUzytkownika);
+        Response.DodajPaginacjeNaglowka(users);
         return Ok(users);
     }
         [HttpGet("{username}")] // /api/users/1

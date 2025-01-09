@@ -1,1 +1,57 @@
-<p>wiadomosci works!</p>
+<div class="container mt-3">
+    <div class="d-flex">
+        <div class="btn-group">
+            <button class="btn btn-primary" btnRadio="Unread" [(ngModel)]="container" (click)="loadMessages()">Nieprzeczytane</button>
+            <button class="btn btn-primary" btnRadio="Inbox" [(ngModel)]="container" (click)="loadMessages()">skrzynka odbiorcza</button>
+            <button class="btn btn-primary" btnRadio="Outbox" [(ngModel)]="container" (click)="loadMessages()">skrzynka nadawcza</button>
+        </div>
+    </div>
+</div>
+
+@if (!serviceWiadomosci.wynikPaginacji()?.items) {
+    <h3>Nie ma wiadomości</h3>
+}@else {
+    <table class="table table-hover mt-3" style="cursor: pointer;">
+        <thead>
+            <tr>
+                <th style="width: 40%;">Wiadomosc</th>
+                <th style="width: 20%;">Od kogo / Do kogo</th>
+                <th style="width: 20%;">Nadawca / Odbiorca</th>
+                <th style="width: 20%;"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (message of serviceWiadomosci.wynikPaginacji()?.items; track message.id) {
+                <tr routerLink="{{getTrase(message)}}">
+                    <td>{{message.content}}</td>
+                    <td>
+                        <div>
+                            <img [src]="container === 'Outbox' ? (message.recipientPhotoUrl) : (message.senderPhotoUrl)"alt="image of user" class="rounded-circle">
+                            <strong>{{container === 'Outbox' ? message.recipientUsername : message.senderUsername}}</strong>
+                        </div>
+                    </td>
+                    <td>{{formatMessageDate(message.messageSent)}}</td>
+                    <td><button class="btn btn-danger">Usuń</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@if (serviceWiadomosci.wynikPaginacji()?.pagination) {
+    <div class="d-flex justify-content-center">
+        <pagination 
+            [boundaryLinks]="true" 
+            [totalItems]="serviceWiadomosci.wynikPaginacji()?.pagination!.totalItems"
+            [itemsPerPage]="serviceWiadomosci.wynikPaginacji()?.pagination!.itemsPerPage"
+            (pageChanged)="zmianaStrony($event)"
+            [(ngModel)]="serviceWiadomosci.wynikPaginacji()?.pagination!.currentPage"
+            [maxSize]="10"
+            previousText="&lsaquo;" 
+            nextText="&rsaquo;" 
+            firstText="&laquo;" 
+            lastText="&raquo;">
+        </pagination>
+    </div>
+    
+  }

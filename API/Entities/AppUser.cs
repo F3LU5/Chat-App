@@ -19,6 +19,8 @@ public class AppUser
     public required string Miasto { get; set; }
     public required string Kraj { get; set; }
     public List<Zdjecie> Zdjecia { get; set; } = [];
+    public List<Message> MessagesSent { get; set; } = [];
+    public List<Message> MessagesReceived { get; set; } = [];
     // public int GetWiek(){
     //     return DataUrodzenia.ObliczWiek();
     // }

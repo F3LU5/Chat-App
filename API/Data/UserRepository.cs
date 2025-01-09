@@ -1,6 +1,7 @@
 using System;
 using API.DataTransferObject;
 using API.Entities;
+using API.Pomoc;
 using API.Uslugi;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
@@ -37,11 +38,11 @@ public class UserRepository(DataContext context, IMapper mapper) : IUserReposito
         context.Entry(user).State = EntityState.Modified;
     }
 
-    public async Task<IEnumerable<MemberDTO>> GetMembersAsync()
+    public async Task<ListaStron<MemberDTO>> GetMembersAsync(WartoscUzytkownika wartoscUzytkownika)
     {
-        return await context.Users
-        .ProjectTo<MemberDTO>(mapper.ConfigurationProvider)
-        .ToListAsync();
+        var query = context.Users
+        .ProjectTo<MemberDTO>(mapper.ConfigurationProvider);
+        return await ListaStron<MemberDTO>.StworzAsync(query, wartoscUzytkownika.PageNumber, wartoscUzytkownika.PageSize);
     }
 
     public async Task<MemberDTO?> GetMemberAsync(string username)
