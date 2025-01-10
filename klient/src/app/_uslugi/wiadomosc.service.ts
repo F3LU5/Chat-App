@@ -27,4 +27,7 @@ export class WiadomoscService {
   getMessageThread(username: string){
     return this.http.get<Wiadomosc[]>(this.bazoweUrl + 'messages/thread/' + username);
   }
+  sentMessage(username: string, content: string){
+    return this.http.post<Wiadomosc>(this.bazoweUrl + 'messages', {recipientUsername: username, content})
+  }
 }

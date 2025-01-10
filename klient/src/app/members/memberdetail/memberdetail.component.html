@@ -40,7 +40,11 @@
                     <p>{{member.wstep}}</p>
                 </tab>
                 <tab heading="Wiadomości">
-                    <app-wiadomosci-uzytkownika [username]="member.username"></app-wiadomosci-uzytkownika>
+                    <app-wiadomosci-uzytkownika 
+                    [username]="member.username"
+                    [messages1]="messages"
+                    (updateMessages)="onUpdateMessages($event)"
+                    ></app-wiadomosci-uzytkownika>
                 </tab>
             </tabset>
         </div>

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\development\\aktualne 29.12\\Chat-App\\API\\API.csproj": {}
+    "E:\\development\\aktualne 29.12\\terazto\\API\\API.csproj": {}
   },
   "projects": {
-    "E:\\development\\aktualne 29.12\\Chat-App\\API\\API.csproj": {
+    "E:\\development\\aktualne 29.12\\terazto\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\development\\aktualne 29.12\\Chat-App\\API\\API.csproj",
+        "projectUniqueName": "E:\\development\\aktualne 29.12\\terazto\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "E:\\development\\aktualne 29.12\\Chat-App\\API\\API.csproj",
+        "projectPath": "E:\\development\\aktualne 29.12\\terazto\\API\\API.csproj",
         "packagesPath": "C:\\Users\\Tomek\\.nuget\\packages\\",
-        "outputPath": "E:\\development\\aktualne 29.12\\Chat-App\\API\\obj\\",
+        "outputPath": "E:\\development\\aktualne 29.12\\terazto\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Tomek\\AppData\\Roaming\\NuGet\\NuGet.Config"

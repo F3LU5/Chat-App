@@ -1,23 +1,24 @@
-import { Component, inject, input, Input, OnInit } from '@angular/core';
+import { Component, inject, input, Input, OnInit, output, ViewChild } from '@angular/core';
 import { Wiadomosc } from '../../_modele/wiadomosc';
 import { WiadomoscService } from '../../_uslugi/wiadomosc.service';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-wiadomosci-uzytkownika',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './wiadomosci-uzytkownika.component.html',
   styleUrl: './wiadomosci-uzytkownika.component.css'
 })
 export class WiadomosciUzytkownikaComponent implements OnInit {
+  @ViewChild('messageForm') messageForm?: NgForm;
   private messageService = inject(WiadomoscService);
   username = input.required<string>();
   messages: Wiadomosc[]=[];
+  messages1 = input.required<Wiadomosc[]>()
+  messageContent = '';
+  updateMessages = output<Wiadomosc>();
 
-sendMessage() {
-throw new Error('Method not implemented.');
-}
-messageContent: any;
   formatMessageDate(date: Date | null) {
     if (!date) return '';
 
@@ -36,6 +37,15 @@ messageContent: any;
   loadMessages(){
     this.messageService.getMessageThread(this.username()).subscribe({
       next: messages => this.messages=messages
+    })
+  }
+
+  sendMessage(){
+    this.messageService.sentMessage(this.username(), this.messageContent).subscribe({
+      next: message1=>{
+        this.updateMessages.emit(message1);
+        this.messageForm?.reset();
+      }
     })
   }
 }
