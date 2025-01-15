@@ -1,0 +1,10 @@
+<div class="speech-to-text">
+  <button [disabled]="recognition && recognition && recognition.interimResults" 
+          class="btn" 
+          [ngClass]="{'btn-secondary': !isListening, 'btn-danger': isListening}"
+          (click)="toggleListening()">
+    <ng-container *ngIf="!isListening">Rozpocznij</ng-container>
+    <ng-container *ngIf="isListening">Zatrzymaj</ng-container>
+  </button>
+  <p *ngIf="transcript">Tekst z mowy: {{ transcript }}</p>
+</div>

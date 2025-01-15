@@ -1,0 +1,52 @@
+@if (member){
+    <div class="row">
+        <div class="col-4">
+            <div class="card">
+                <img src="{{member.zdjecieUrl || './assets/user.png'}}" alt="{{member.onas}}" class="card-img img-thumbnail">
+                <div class="card-body">
+                    <div>
+                        <strong>Zawód:</strong>
+                        <p>{{member.miasto}}</p>
+                    </div>
+                    <div>
+                        <strong>Numer Telefonu:</strong>
+                        <p>{{member.kraj}}</p>
+                    </div>
+                    <div>
+                        <strong>Wiek:</strong>
+                        <p>{{member.wiek}}</p>
+                    </div>
+                    <div>
+                        <strong>Ostatnia Aktywność:</strong>
+                        <p>{{member.ostatniaAktywnosc}}</p>
+                    </div>
+                    <div>
+                        <strong>Pracuje od:</strong>
+                        <p>{{member.stworzone}}</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="btn-group d-flex">
+                        <button class="btn btn-primary">Dodaj</button>
+                        <button class="btn btn-success">Wiadomość</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-8">
+            <tabset class="member-tabset">
+                <tab heading="Czym się zajmuje {{member.onas}} w Firmie">
+                    <h4>O pracy</h4>
+                    <p>{{member.wstep}}</p>
+                </tab>
+                <tab heading="Wiadomości">
+                    <app-wiadomosci-uzytkownika 
+                    [username]="member.username"
+                    [messages1]="messages"
+                    (updateMessages)="onUpdateMessages($event)"
+                    ></app-wiadomosci-uzytkownika>
+                </tab>
+            </tabset>
+        </div>
+    </div>
+}
