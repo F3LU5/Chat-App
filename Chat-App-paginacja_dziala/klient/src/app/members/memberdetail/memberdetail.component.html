@@ -4,6 +4,11 @@
             <div class="card">
                 <img src="{{member.zdjecieUrl || './assets/user.png'}}" alt="{{member.onas}}" class="card-img img-thumbnail">
                 <div class="card-body">
+                    @if (presenceService.onlineUsers().includes(member.username)) {
+                        <div class="mb-2">
+                            <i class="fa fa-user-circle text-success"> Dostępny</i>
+                        </div>
+                    }
                     <div>
                         <strong>Zawód:</strong>
                         <p>{{member.miasto}}</p>
@@ -42,9 +47,6 @@
                 <tab heading="Wiadomości" (selectTab)="onTabActivated($event)">
                     <app-wiadomosci-uzytkownika 
                     [username]="member.username"
-                    [messages]="messages"
-                    [messages1]="messages"
-                    (updateMessages)="onUpdateMessages($event)"
                     ></app-wiadomosci-uzytkownika>
                 </tab>
             </tabset>

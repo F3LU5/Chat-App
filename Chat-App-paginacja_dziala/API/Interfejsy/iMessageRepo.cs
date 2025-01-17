@@ -11,6 +11,6 @@ public interface IMessageRepo
     void DeleteMessage(Message message);
     Task<Message?> GetMessage(int id);
     Task<ListaStron<MessageDTO>> GetMessageForUser(MessagePar messagePar);
-    Task<IEnumerable<MessageDTO>> GetMessageThread(string currentUsername, string RecipientUsername);
+    Task<IEnumerable<MessageDTO>> GetMessageThread(string currentUsername, string recipientUsername);
     Task<bool> SaveAllAsync();
 }

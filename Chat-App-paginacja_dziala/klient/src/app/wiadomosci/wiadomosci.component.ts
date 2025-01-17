@@ -20,7 +20,7 @@ import { DatePipe } from '@angular/common';
 })
 export class WiadomosciComponent implements OnInit{
   serviceWiadomosci = inject(WiadomoscService);
-  container = 'Outbox';
+  container = 'Inbox';
   pageNumber = 1;
   pageSize = 5;
   datePipe = new DatePipe('en-US');

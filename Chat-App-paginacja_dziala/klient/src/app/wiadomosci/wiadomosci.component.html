@@ -15,7 +15,7 @@
         <thead>
             <tr>
                 <th style="width: 40%;">Wiadomosc</th>
-                <th style="width: 20%;">{{container === 'Outbox' ? 'Odbiorca' : 'Nadawca'}}</th>
+                <th style="width: 20%;">{{isOutbox ? 'Odbiorca' : 'Nadawca'}}</th>
                 <th style="width: 20%;">Nadawca / Odbiorca</th>
                 <th style="width: 20%;"></th>
             </tr>
@@ -26,8 +26,8 @@
                     <td>{{message.content}}</td>
                     <td>
                         <div>
-                            <img [src]="isOutbox ? (message.senderPhotoUrl || './assets/user.png') : (message.recipientPhotoUrl || './assets/user.png')"alt="image of user" class="rounded-circle">
-                            <strong>{{isOutbox ? message.senderUsername : message.recipientUsername}}</strong>
+                            <img [src]="isOutbox ? (message.recipientPhotoUrl || './assets/user.png') : (message.senderPhotoUrl || './assets/user.png')"alt="image of user" class="rounded-circle">
+                            <strong>{{isOutbox ? message.recipientUsername : message.senderUsername}}</strong>
                         </div>
                     </td>
                     <td>{{formatMessageDate(message.messageSent)}}</td>

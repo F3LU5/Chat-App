@@ -3,12 +3,14 @@ import { inject, Injectable, signal } from '@angular/core';
 import { User } from '../_modele/user';
 import { map } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { PresenceService } from './presence.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
   private http = inject(HttpClient);
+  private obecnieService = inject(PresenceService);
   bazoweURL = environment.apiUrl;
   aktualnyUzytkownik = signal<User | null>(null);
 
@@ -35,11 +37,13 @@ export class AccountService {
   ustawAktualnegoUzytkownika(user: User){
     localStorage.setItem('user', JSON.stringify(user))
       this.aktualnyUzytkownik.set(user);
+      this.obecnieService.createHubConnectrion(user)
   }
 
   wyloguj(){
     localStorage.removeItem('user');
     this.aktualnyUzytkownik.set(null);
+    this.obecnieService.stopHubConnection();
   }
 
 }

@@ -1,5 +1,4 @@
-import { Component, inject, input, Input, OnInit, output, ViewChild } from '@angular/core';
-import { Wiadomosc } from '../../_modele/wiadomosc';
+import { Component, inject, input, OnInit, ViewChild } from '@angular/core';
 import { WiadomoscService } from '../../_uslugi/wiadomosc.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -14,12 +13,9 @@ import { SpeechToTextComponent } from '../../wiadomosci-uzytkownika/speech-to-te
 })
 export class WiadomosciUzytkownikaComponent implements OnInit {
   @ViewChild('messageForm') messageForm?: NgForm;
-  private messageService = inject(WiadomoscService);
+  messageService = inject(WiadomoscService);
   username = input.required<string>();
-  messages = input.required<Wiadomosc[]>();
-  messages1 = input.required<Wiadomosc[]>();
   messageContent = '';
-  updateMessages = output<Wiadomosc>();
 
   formatMessageDate(date: Date | null) {
     if (!date) return '';
@@ -39,11 +35,8 @@ export class WiadomosciUzytkownikaComponent implements OnInit {
 
 
   sendMessage() {
-    this.messageService.sentMessage(this.username(), this.messageContent).subscribe({
-      next: message1 => {
-        this.updateMessages.emit(message1);
-        this.messageForm?.reset();
-      }
-    });
+    this.messageService.sentMessage(this.username(), this.messageContent).then(() => {
+      this.messageForm?.reset();
+    })
   }
 }

@@ -2,6 +2,7 @@ using System;
 using API.Data;
 using API.Interfejsy;
 using API.Pomoc;
+using API.SignalR;
 using API.Uslugi;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,6 +25,9 @@ public static class RozszerzeniaAplikacji
         services.AddScoped<IMessageRepo, MessageRepo>();
         services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
+        services.AddSignalR();
+        services.AddSingleton<PresenceHub>();
+        services.AddSingleton<PresenceTracker>();
 
         return services;
     }
