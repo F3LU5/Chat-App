@@ -13,4 +13,9 @@ public interface IMessageRepo
     Task<ListaStron<MessageDTO>> GetMessageForUser(MessagePar messagePar);
     Task<IEnumerable<MessageDTO>> GetMessageThread(string currentUsername, string recipientUsername);
     Task<bool> SaveAllAsync();
+    void AddGroup(Group group);
+    void RemoveConnectrion(Polaczenie polaczenie);
+    Task<Polaczenie?> GetPolaczenie(string polaczenieId);
+    Task<Group?> GetMessageGroup(string groupName);
+    
 }

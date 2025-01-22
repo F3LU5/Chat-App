@@ -20,6 +20,7 @@ public class MessageHub(IMessageRepo messageRepo, IUserRepository userRepository
             throw new Exception("Nie mozna dołączyć do grupy");
         var groupName = GetGroupName(Context.User.GetUsername(), otherUser);
         await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
+        await AddToGroup(groupName);
 
         var messages = await messageRepo.GetMessageThread(Context.User.GetUsername(), otherUser!);
 
@@ -27,9 +28,10 @@ public class MessageHub(IMessageRepo messageRepo, IUserRepository userRepository
         
     }
 
-    public override Task OnDisconnectedAsync(Exception? exception)
+    public override async Task OnDisconnectedAsync(Exception? exception)
     {
-        return base.OnDisconnectedAsync(exception);
+        await RemoveMessageGroup();
+        await base.OnDisconnectedAsync(exception);
     }
 
     public async Task SendMessage(CreateMessageDTO createMessageDTO)
@@ -51,14 +53,45 @@ public class MessageHub(IMessageRepo messageRepo, IUserRepository userRepository
             RecipientUsername = recipient.UserName,
             Content = createMessageDTO.Content
         };
+
+        var groupName = GetGroupName(sender.UserName, recipient.UserName);
+        var group = await messageRepo.GetMessageGroup(groupName);
+
+        if (group != null && group.Polaczenia.Any(x => x.Username == recipient.UserName))
+        {
+            message.DateRead = DateTime.UtcNow;
+        }
         messageRepo.AddMessage(message);
 
         if (await messageRepo.SaveAllAsync())
         {
-            var group =GetGroupName(sender.UserName, recipient.UserName);
-            await Clients.Group(group).SendAsync("NewMessages", mapper.Map<MessageDTO>(message));        //tu zobaczyc moze zle byc MessageDTO
+            await Clients.Group(groupName).SendAsync("NewMessages", mapper.Map<MessageDTO>(message));        //tu zobaczyc moze zle byc MessageDTO
         }
 
+    }
+
+    private async Task<bool> AddToGroup(string groupName)
+    {
+        var username =Context.User?.GetUsername() ?? throw new Exception("Nie mozna pobrać nazwy uzytkownika");
+        var group = await messageRepo.GetMessageGroup(groupName);
+        var polaczenie = new Polaczenie{PolaczenieId = Context.ConnectionId, Username = username};
+
+        if(group == null){
+            group = new Group{Name = groupName};
+            messageRepo.AddGroup(group);
+        }
+        group.Polaczenia.Add(polaczenie);
+        return await messageRepo.SaveAllAsync();
+    }
+
+    private async Task RemoveMessageGroup()
+    {
+        var polaczenie = await messageRepo.GetPolaczenie(Context.ConnectionId);
+        if(polaczenie != null)
+        {
+            messageRepo.RemoveConnectrion(polaczenie);
+            await messageRepo.SaveAllAsync();
+        }
     }
 
     private string GetGroupName(string caller, string? other)

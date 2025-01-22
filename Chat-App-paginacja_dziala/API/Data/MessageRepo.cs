@@ -13,6 +13,12 @@ namespace API.Data;
 
 public class MessageRepo(DataContext context, IMapper mapper) : IMessageRepo
 {
+    public void AddGroup(Group group)
+    {
+        context.Groups.Add(group);
+    }
+
+
     public void AddMessage(Message message)
     {
         context.Messages.Add(message);
@@ -40,6 +46,14 @@ public class MessageRepo(DataContext context, IMapper mapper) : IMessageRepo
         return await ListaStron<MessageDTO>.StworzAsync(message, messagePar.PageNumber, messagePar.PageSize);
     }
 
+    public async Task<Group?> GetMessageGroup(string groupName)
+    {
+        return await context.Groups
+        .Include(x => x.Polaczenia)
+        .FirstOrDefaultAsync(x => x.Name == groupName);
+    }
+
+
     public async Task<IEnumerable<MessageDTO>> GetMessageThread(string currentUsername, string recipientUsername)
     {
         var messages = await context.Messages.Include(a=>a.Sender).ThenInclude(a=>a.Zdjecia).Include(a=>a.Recipient).ThenInclude(a=>a.Zdjecia).Where(a=>
@@ -54,7 +68,16 @@ public class MessageRepo(DataContext context, IMapper mapper) : IMessageRepo
             return mapper.Map<IEnumerable<MessageDTO>>(messages);
     }
 
-    
+    public async Task<Polaczenie?> GetPolaczenie(string polaczenieId)
+    {
+        return await context.Polaczenia.FindAsync(polaczenieId);
+    }
+
+    public void RemoveConnectrion(Polaczenie polaczenie)
+    {
+        context.Polaczenia.Remove(polaczenie);
+    }
+
 
     public async Task<bool> SaveAllAsync()
     {

@@ -28,6 +28,7 @@ try
 {
     var context = services.GetRequiredService<DataContext>();
     await context.Database.MigrateAsync();
+    await context.Database.ExecuteSqlRawAsync("DELETE FROM [Polaczenia]");
     await Seed.SeedUsers(context);
 }
 catch (Exception ex)
