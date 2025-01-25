@@ -6,11 +6,13 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ZdjprofeditorComponent } from "../zdjprofeditor/zdjprofeditor.component";
+import { DatePipe } from '@angular/common';
+import { TimeagoModule } from 'ngx-timeago';
 
 @Component({
   selector: 'app-memberedit',
   standalone: true,
-  imports: [TabsModule, FormsModule, ZdjprofeditorComponent],
+  imports: [TabsModule, FormsModule, ZdjprofeditorComponent, DatePipe, TimeagoModule],
   templateUrl: './memberedit.component.html',
   styleUrl: './memberedit.component.css'
 })

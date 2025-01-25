@@ -23,6 +23,7 @@ public static class RozszerzeniaAplikacji
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<DodawanieZdjeciaService, ZdjecieService>();
         services.AddScoped<IMessageRepo, MessageRepo>();
+        services.AddScoped<LogoUzytkownikaAktywny>();
         services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
         services.AddSignalR();

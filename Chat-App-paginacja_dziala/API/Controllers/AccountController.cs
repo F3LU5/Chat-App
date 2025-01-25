@@ -55,6 +55,7 @@ public class AccountController(DataContext context, UslugiToken uslugiToken, IMa
             if(obliczonyhash[i] != user.hashaslo[i])
             return Unauthorized("Niepoprawne hasło");
         }
+        
         return new UzytkownikDTO
         {
             Username = user.UserName,

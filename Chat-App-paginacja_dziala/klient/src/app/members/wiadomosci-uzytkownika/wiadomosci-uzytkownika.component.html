@@ -11,19 +11,19 @@
                             <div class="chat-container">
                                 @if (message.senderUsername !== username()) {
                                     <span class="chat-img">
-                                        <img class="rounded-circle" src="{{message.senderPhotoUrl}}" alt="zdjęcie nadawcy">
+                                        <img class="rounded-circle" src="{{message.senderPhotoUrl || './assets/user.png'}}" alt="zdjęcie nadawcy">
                                     </span>
                                 }
                                 <div class="chat-body">
                                     <div class="message-content">
                                         <p>{{message.content}}</p>
                                         <small class="text-muted">
-                                            {{formatMessageDate(message.messageSent)}}
+                                            {{message.messageSent | timeago}}
                                             @if (!message.dateRead && message.senderUsername !== username()) {
-                                                <span class="text-danger">nieprzeczytane</span>
+                                                <span class="text-danger">(nieprzeczytane) </span>
                                             }
                                             @if (message.dateRead && message.senderUsername !== username()) {
-                                                <span class="text-success">przeczytane</span>
+                                                <span class="text-success">(przeczytane {{message.dateRead | timeago}})</span>
                                             }
                                         </small>
                                     </div>

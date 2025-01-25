@@ -15,7 +15,7 @@ export class WiadomoscService {
   bazoweUrl = environment.apiUrl;
   hubUrl = environment.hubsUrl;
   private http = inject(HttpClient);
-  private hubConnection?: HubConnection;
+  hubConnection?: HubConnection;
   wynikPaginacji = signal<WynikPaginacji<Wiadomosc[]> | null>(null);
   messageThread = signal<Wiadomosc[]>([]);
 

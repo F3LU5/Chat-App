@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace API.SignalR;
 
-public class MessageHub(IMessageRepo messageRepo, IUserRepository userRepository, IMapper mapper) : Hub
+public class MessageHub(IMessageRepo messageRepo, IUserRepository userRepository, IMapper mapper, IHubContext<PresenceHub> presenceHub) : Hub
 {
     public override async Task OnConnectedAsync()
     {
@@ -60,6 +60,12 @@ public class MessageHub(IMessageRepo messageRepo, IUserRepository userRepository
         if (group != null && group.Polaczenia.Any(x => x.Username == recipient.UserName))
         {
             message.DateRead = DateTime.UtcNow;
+        }
+        else{
+            var polaczenia = await PresenceTracker.PolaczeniezUzytkownikiem(recipient.UserName);
+            if(polaczenia != null && polaczenia?.Count != null){
+                await presenceHub.Clients.Clients(polaczenia).SendAsync("NewMessageReceived", new {username = sender.UserName, onas = sender.Onas});
+            }
         }
         messageRepo.AddMessage(message);
 

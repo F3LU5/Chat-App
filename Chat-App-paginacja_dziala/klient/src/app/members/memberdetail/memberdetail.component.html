@@ -23,11 +23,11 @@
                     </div>
                     <div>
                         <strong>Ostatnia Aktywność:</strong>
-                        <p>{{member.ostatniaAktywnosc}}</p>
+                        <p>{{member.ostatniaAktywnosc | timeago}}</p>
                     </div>
                     <div>
                         <strong>Pracuje od:</strong>
-                        <p>{{member.stworzone}}</p>
+                        <p>{{member.stworzone | date: 'dd MMM yyyy'}}</p>
                     </div>
                 </div>
                 <div class="card-footer">
