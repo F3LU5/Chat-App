@@ -1,0 +1,24 @@
+<div class="container mt-5">
+    <div style="text-align: center; position: relative;">
+  
+      @if (!rejestracja) {
+        <h1 class="display-4 animate__animated animate__fadeIn animate__delay-1s">Witaj w naszej aplikacji chatowej!</h1>
+        <p class="lead animate__animated animate__fadeIn animate__delay-2s">Jeszcze nie najlepsza, ale jesteśmy na dobrej drodze...</p>
+  
+        <div class="mt-4">
+          <button (click)="rejestracjaToggle()" class="btn btn-primary btn-lg me-2 animate__animated animate__zoomIn animate__delay-4s">Rozpocznij Rejestrację</button>
+
+        </div>
+      } @else {
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+              <app-rejestracja (anulujRejestracje)="anulujRejestracjeOpcja($event)"></app-rejestracja>
+            </div>
+          </div>
+        </div>
+      }
+  
+    </div>
+  </div>
+  

@@ -1,0 +1,134 @@
+.card {
+    border: none;
+}
+
+.chat {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.chat li {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.chat li.sent {
+    justify-content: flex-end;
+}
+
+.chat li.received {
+    justify-content: flex-start;
+}
+
+.chat-container {
+    display: flex;
+    align-items: center;
+    max-width: 50%;
+}
+
+.chat-body {
+    background-color: #e9ecef;
+    border-radius: 15px;
+    padding: 10px;
+    word-wrap: break-word;
+    max-width: 100%;
+}
+
+.chat li.sent .chat-body {
+    background-color: #007bff;
+    color: #fff;
+    border-top-right-radius: 0;
+}
+
+.chat li.received .chat-body {
+    background-color: #f1f1f1;
+    color: #333;
+    border-top-left-radius: 0;
+}
+
+.chat-img {
+    max-height: 50px;
+    margin: 0 10px;
+}
+
+.rounded-circle {
+    max-height: 50px;
+    max-width: 50px;
+    border-radius: 50%;
+}
+
+.chat-container-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    overflow-y: auto;
+    padding: 10px;
+    height: 450px;
+    display: flex;
+    flex-direction: column-reverse; /* Sprawia, że zawartość jest odwrócona */
+}
+
+
+/* Nowy styl dla formularza */
+.card-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-group {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-group .form-control {
+    flex-grow: 1;
+    max-width: 800px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    margin-right: 10px;
+    box-sizing: border-box;
+}
+
+.form-control::placeholder {
+    color: #888;
+    font-style: italic;
+    font-size: 14px;
+}
+
+/* Styl dla przycisku i ikony */
+.btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Przyciski są teraz okrągłe */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 20px;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Zmiana koloru przycisku przy najechaniu */
+    transform: scale(1.1); /* Powiększenie przycisku przy najechaniu */
+}
+
+.btn:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+.fa-arrow-right {
+    font-size: 20px; /* Rozmiar ikony strzałki */
+}
