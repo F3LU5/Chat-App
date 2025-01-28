@@ -1,0 +1,43 @@
+<!-- Pasek boczny -->
+<div class="sidebar" [class.open]="isSidebarOpen">
+  <div class="container">
+    <button class="menu-btn" (click)="toggleSidebar()" [class.open]="isSidebarOpen">☰</button>
+    
+    <!-- Menu - Zaproszenia, Lista znajomych, Wiadomości -->
+    <ul class="navbar-nav">
+      @if (ObslugaKonta.aktualnyUzytkownik()){
+      <li class="nav-item">
+        <a routerLink="/members" routerLinkActive="active" class="nav-link">Użytkownicy</a>
+      </li>
+    <li class="nav-item">
+      <a routerLink="/listy" routerLinkActive="active" class="nav-link">Lista znajomych</a>
+    </li>
+      <li class="nav-item">
+        <a routerLink="/wiadomosci" routerLinkActive="active" class="nav-link">Wiadomości</a>
+      </li>
+      }
+    </ul>
+
+    <!-- Użytkownik - Avatar i dropdown -->
+    @if (ObslugaKonta.aktualnyUzytkownik()){
+      <div dropdown class="dropdown">
+        <img class="me-2" src="{{ObslugaKonta.aktualnyUzytkownik()?.zdjecieUrl || './assets/user.png'}}" alt="Avatar użytkownika" class="user-avatar">
+        <a dropdownToggle class="dropdown-toggle text-light text-decoration-none">Witaj {{ObslugaKonta.aktualnyUzytkownik()?.username | titlecase}}</a>
+        <div *dropdownMenu class="dropdown-menu">
+          <a routerLink="/znajomy/edit" class="dropdown-item">Edytuj Profil</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" (click)="wyloguj()">Wyloguj</a>
+        </div>
+      </div>
+    }
+
+    <!-- Formularz logowania -->
+    @if (!ObslugaKonta.aktualnyUzytkownik()){
+      <form #FormularzLogowania="ngForm" (ngSubmit)="login()" class="d-flex flex-column formularz-logowania" autocomplete="off">
+        <input name="nazwauzytkownika" [(ngModel)]="model.username" class="form-control mb-2" type="text" placeholder="Nazwa Użytkownika">
+        <input name="haslo" [(ngModel)]="model.password" class="form-control mb-2" type="password" placeholder="Hasło">
+        <button class="btn btn-outline-success" type="submit">Zaloguj</button>
+      </form>
+    }
+  </div>
+</div>
