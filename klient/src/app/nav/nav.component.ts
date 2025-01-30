@@ -5,11 +5,12 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { TitleCasePipe } from '@angular/common';
+import { PosiadaroleDirective } from '../dyrektywy/posiadarole.directive';
 
 @Component({
   selector: 'app-nav',
   standalone: true,
-  imports: [FormsModule, BsDropdownModule, RouterLink, RouterLinkActive, TitleCasePipe],
+  imports: [FormsModule, BsDropdownModule, RouterLink, RouterLinkActive, TitleCasePipe, PosiadaroleDirective],
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']
 })

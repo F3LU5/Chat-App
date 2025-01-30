@@ -1398,3 +1398,4 @@ E:\development\Pracainzynierska\Chat-App-Role\API\obj\Debug\net8.0\refint\API.dl
 E:\development\Pracainzynierska\Chat-App-Role\API\obj\Debug\net8.0\API.pdb
 E:\development\Pracainzynierska\Chat-App-Role\API\obj\Debug\net8.0\API.genruntimeconfig.cache
 E:\development\Pracainzynierska\Chat-App-Role\API\obj\Debug\net8.0\ref\API.dll
+E:\development\Pracainzynierska\Chat-App-Role\API\obj\Debug\net8.0\API.sourcelink.json

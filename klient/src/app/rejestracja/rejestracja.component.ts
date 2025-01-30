@@ -48,14 +48,21 @@ export class RejestracjaComponent implements OnInit {
     }
   }
 
-  rejestracja(){
-    const dob = this.tylkoData(this.FormularzRejestracji.get('DataUrodzenia')?.value)
-    this.FormularzRejestracji.patchValue({DataUrodzenia: dob});
+  rejestracja() {
+    const dob = this.tylkoData(this.FormularzRejestracji.get('DataUrodzenia')?.value);
+    this.FormularzRejestracji.patchValue({ DataUrodzenia: dob });
+  
+    console.log('Dane wysyłane do API:', this.FormularzRejestracji.value);
+  
     this.accountService.register(this.FormularzRejestracji.value).subscribe({
       next: _ => this.trasa.navigateByUrl('/members'),
-      error: error => this.bledyValidacji = error
-    })
+      error: error => {
+        console.error('Błąd rejestracji:', error);
+        this.bledyValidacji = error;
+      }
+    });
   }
+  
   anuluj(){
     this.anulujRejestracje.emit(false);
   }

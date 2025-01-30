@@ -8,6 +8,8 @@ import { autoryzacjaGuard } from './guards/autoryzacja.guard';
 import { MembereditComponent } from './members/memberedit/memberedit.component';
 import { niezapisaneZmianyGuard } from './guards/niezapisane-zmiany.guard';
 import { memberdetaleResolver } from './_rozwiazania/memberdetale.resolver';
+import { AdminPanelComponent } from './Administrator/admin-panel/admin-panel.component';
+import { adminGuard } from './guards/admin.guard';
 
 export const routes: Routes = [
     {path: '', component: GlownaComponent},
@@ -21,6 +23,7 @@ export const routes: Routes = [
             {path: 'znajomy/edit', component: MembereditComponent, canDeactivate: [niezapisaneZmianyGuard]},
             {path: 'listy', component: ListyComponent},
             {path: 'wiadomosci', component: WiadomosciComponent},
+            {path: 'admin', component: AdminPanelComponent, canActivate: [adminGuard]}
         ]
     },
     {path: '**', component: GlownaComponent, pathMatch: 'full'},

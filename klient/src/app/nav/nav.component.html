@@ -15,6 +15,9 @@
       <li class="nav-item">
         <a routerLink="/wiadomosci" routerLinkActive="active" class="nav-link">Wiadomości</a>
       </li>
+      <li *appPosiadarole="['Admin', 'Moderator']" class="nav-item">
+        <a routerLink="/admin" routerLinkActive="active" class="nav-link">Admin</a>
+      </li>
       }
     </ul>
 
