@@ -1,0 +1,65 @@
+<form [formGroup]="FormularzRejestracji" (ngSubmit)="rejestracja()" autocomplete="off" class="rejestracja-form">
+    <h2 class="text-center text-primary animated-header">Rejestracja</h2>
+    <hr>
+
+    <div class="mb-3 radio-group">
+        <label class="form-check-label animated-radio">
+            <input type="radio" class="form-check-input" value="mezczyzna" formControlName="Plec">Mężczyzna
+        </label>
+        <label class="form-check-label animated-radio">
+            <input type="radio" class="form-check-input" value="kobieta" formControlName="Plec">Kobieta
+        </label>
+    </div>
+
+    <div class="mb-3 form-floating input-group">
+        <input type="text" [class.is-invalid]="FormularzRejestracji.get('username')?.errors && FormularzRejestracji.get('username')?.touched" class="form-control" formControlName="username" placeholder="Login">
+        <label>Login</label>
+        <div class="invalid-feedback">Proszę wprowadzić Login</div>
+    </div>
+
+    <div class="mb-3 form-floating input-group">
+        <input type="text" [class.is-invalid]="FormularzRejestracji.get('Onas')?.errors && FormularzRejestracji.get('Onas')?.touched" class="form-control" formControlName="Onas" placeholder="Nazwa Użytkownika">
+        <label>Imię i Nazwisko</label>
+        <div class="invalid-feedback">Podaj nazwę, jaką chcesz używać</div>
+    </div>
+
+    <app-wybordatyurodzenia [formControl]="$any(FormularzRejestracji.controls['DataUrodzenia'])" [maksymalnaDatadopuszczalna]="maksymalnaDatadopuszczalna" [oznaczenie]="'DataUrodzenia'"></app-wybordatyurodzenia>
+
+    <div class="mb-3 form-floating input-group">
+        <input type="text" [class.is-invalid]="FormularzRejestracji.get('Kraj')?.errors && FormularzRejestracji.get('Kraj')?.touched" class="form-control" formControlName="Kraj" placeholder="Kraj">
+        <label>Numer Telefony</label>
+        <div class="invalid-feedback">Prosze wprowadzic numer telefonu</div>
+    </div>
+
+    <div class="mb-3 form-floating input-group">
+        <input type="text" [class.is-invalid]="FormularzRejestracji.get('Miasto')?.errors && FormularzRejestracji.get('Miasto')?.touched" class="form-control" formControlName="Miasto" placeholder="Miasto">
+        <label>Zawód jaki wykonuje</label>
+        <div class="invalid-feedback">Proszę wprowadź czym się zajmujesz</div>
+    </div>
+
+    <div class="mb-3 form-floating input-group">
+        <input class="form-control" [class.is-invalid]="FormularzRejestracji.get('password')?.errors && FormularzRejestracji.get('password')?.touched" type="password" name="password" formControlName="password" placeholder="Hasło">
+        <label>Hasło</label>
+        <div *ngIf="FormularzRejestracji.get('password')?.hasError('required')" class="invalid-feedback">Proszę wprowadzić hasło</div>
+        <div *ngIf="FormularzRejestracji.get('password')?.hasError('minlength')" class="invalid-feedback">Hasło musi składać się przynajmniej z 4 znaków</div>
+        <div *ngIf="FormularzRejestracji.get('password')?.hasError('maxlength')" class="invalid-feedback">Hasło nie może być dłuższe niż 16 znaków</div>
+    </div>
+
+    <div class="mb-3 form-floating input-group">
+        <input class="form-control" [class.is-invalid]="FormularzRejestracji.get('confirmPassword')?.errors && FormularzRejestracji.get('confirmPassword')?.touched" type="password" name="confirmPassword" formControlName="confirmPassword" placeholder="Potwierdź Hasło">
+        <label>Powtórz Hasło</label>
+        <div *ngIf="FormularzRejestracji.get('confirmPassword')?.hasError('required')" class="invalid-feedback">Proszę powtórzyć hasło</div>
+        <div *ngIf="FormularzRejestracji.get('confirmPassword')?.hasError('odpowiada')" class="invalid-feedback">Hasła muszą być takie same</div>
+    </div>
+
+    <div class="alert alert-danger" *ngIf="bledyValidacji?.length">
+        <ul>
+            <li *ngFor="let error of bledyValidacji; trackBy: trackByIndex">{{error}}</li>
+        </ul>
+    </div>
+
+    <div class="form-group text-center">
+        <button [disabled]="!FormularzRejestracji.valid" class="btn btn-success me-2" type="submit">Zarejestruj</button>
+        <button class="btn btn-default me-2" (click)="anuluj()" type="button">Anuluj Rejestracje</button>
+    </div>
+</form>

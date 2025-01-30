@@ -1,0 +1,108 @@
+/* Styl przycisku otwierającego menu - zmniejszenie ikony */
+.menu-btn {
+    font-size: 30px; /* Zmniejszenie rozmiaru ikony */
+    color: white; /* Kolor ikony na biały */
+    background-color: #343a40; /* Tło przycisku w tym samym kolorze, co menu */
+    border: none;
+    position: fixed;
+    top: 20px; /* Dostosowanie pozycji w pionie */
+    left: 10px; /* Początkowe położenie przycisku */
+    z-index: 100;
+    opacity: 1; /* Pełna widoczność przycisku */
+    transition: left 0.3s ease-in-out, background-color 0.3s ease-in-out; /* Płynne przejście przy przesuwaniu i zmianie koloru */
+    padding: 10px; /* Dodatkowa przestrzeń wokół ikony */
+    border-radius: 5px; /* Zaokrąglenie rogów przycisku */
+  }
+  
+  /* Gdy menu jest otwarte, przesuwamy przycisk na prawo */
+  .menu-btn.open {
+    left: 250px; /* Przesunięcie przycisku na prawo w momencie, gdy menu jest otwarte (dopasowane do nowej szerokości menu) */
+  }
+  
+  /* Efekt hover dla przycisku */
+  .menu-btn:hover {
+    opacity: 1; /* Pełna widoczność przy najechaniu */
+  }
+  
+  /* Styl bocznego menu */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    z-index: 99;
+    left: -250px; /* Menu jest początkowo schowane, teraz bardziej na lewo, z uwagi na mniejszą szerokość menu */
+    width: 250px; /* Zmniejszona szerokość menu */
+    height: 100%;
+    background-color: #343a40; /* Kolor tła menu */
+    overflow-y: auto;
+    transition: 0.3s; /* Płynne przejście przy wysuwaniu menu */
+    padding-top: 20px;
+  }
+  
+  /* Gdy menu jest otwarte */
+  .sidebar.open {
+    left: 0; /* Menu wysuwa się na lewo */
+  }
+  
+  /* Większe zdjęcie użytkownika */
+  .user-avatar {
+    width: 50px;  /* Zwiększenie szerokości awatara */
+    height: 50px; /* Zwiększenie wysokości awatara */
+    border-radius: 50%; /* Zaokrąglenie na kółko */
+    object-fit: cover; /* Dopasowanie obrazu */
+    margin-right: 10px; /* Odstęp między obrazkiem a nazwą użytkownika */
+  }
+  
+  /* Formularz logowania */
+  .formularz-logowania {
+    margin-left: 20px; /* Dodanie odstępu od lewej krawędzi */
+    margin-right: 20px; /* Dodanie odstępu od prawej krawędzi */
+    margin-top: 50px; /* Dodanie odstępu od góry (możesz dostosować) */
+  }
+  
+  /* Inne style formularza (jeśli jeszcze nie ma) */
+  .form-control {
+    margin-bottom: 15px; /* Odstęp między polami formularza */
+  }
+  
+  /* Zwiększone odstępy między zakładkami */
+  .sidebar .navbar-nav .nav-item {
+    margin-bottom: 20px;  /* Dodanie większego odstępu między zakładkami */
+  }
+  
+  /* Zwiększenie rozmiaru czcionki w zakładkach */
+  .sidebar .navbar-nav .nav-link {
+    font-size: 18px;  /* Zwiększenie rozmiaru czcionki */
+    font-weight: bold; /* Pogrubienie tekstu */
+    color: white; /* Kolor tekstu */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Dodano transformację */
+  }
+  
+  /* Efekt hover dla przycisków w menu */
+  .sidebar .navbar-nav .nav-link:hover {
+    background-color: #495057; /* Zmiana koloru tła */
+    transform: scale(1.05); /* Lekka animacja powiększenia przy najechaniu */
+  }
+  
+  /* Zmiana koloru tekstu przy aktywnej zakładce */
+  .sidebar .navbar-nav .nav-link.active {
+    background-color: #495057; /* Kolor tła aktywnej zakładki */
+    border-radius: 5px; /* Zaokrąglenie zakładki */
+  }
+  
+  /* Styl dropdowna w menu */
+  .dropdown-toggle {
+    color: white; /* Kolor tekstu */
+  }
+  
+  .dropdown-menu {
+    background-color: #343a40; /* Tło menu rozwijanego */
+  }
+  
+  .dropdown-item {
+    color: white; /* Kolor tekstu w menu rozwijanym */
+  }
+  
+  .dropdown-item:hover {
+    background-color: #495057; /* Zmiana tła przy najechaniu */
+  }
+  

@@ -1,0 +1,8 @@
+<div class="speech-to-text">
+  <button [disabled]="recognition && recognition && recognition.interimResults" 
+          class="btn" 
+          [ngClass]="{'btn-secondary': !isListening, 'btn-danger': isListening}"
+          (click)="toggleListening()">
+    <i class="fa fa-microphone"></i> <!-- Ikona mikrofonu -->
+  </button>
+</div>

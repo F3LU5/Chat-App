@@ -1,0 +1,138 @@
+.rounded-circle {
+    max-height: 50px;
+    transition: transform 0.3s ease;
+}
+
+.rounded-circle:hover {
+    transform: scale(1.1);
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f0f0f0;
+    transition: background-color 0.3s ease;
+}
+
+.table-dark th {
+    background-color: #343a40;
+    color: white;
+    font-weight: bold;
+}
+
+.table-hover td {
+    vertical-align: middle;
+}
+
+.table-row:hover {
+    background-color: #f8f9fa;
+    cursor: pointer;
+}
+
+.table-hover td button {
+    transition: background-color 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #d9534f;
+}
+
+.d-flex.align-items-center img {
+    margin-right: 10px;
+}
+
+h3 {
+    color: #333;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.animate__fadeIn {
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.table-row {
+    transition: transform 0.3s ease;
+}
+
+.table-row:hover {
+    transform: scale(1.02);
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+.table-row {
+    position: relative;
+    cursor: pointer;
+}
+
+.table-row:hover::after {
+    content: "Kliknij, aby przejść do wiadomości";
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 10;
+    opacity: 0;
+    animation: tooltipFadeIn 0.3s forwards;
+}
+
+@keyframes tooltipFadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.d-flex.align-items-center img {
+    margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+    .table th, .table td {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .btn-group button {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .rounded-circle {
+        max-height: 40px;
+    }
+
+    .table-row:hover::after {
+        display: none;
+    }
+}
