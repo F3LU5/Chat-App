@@ -14,7 +14,7 @@ public class RegDTO
     [DataType(DataType.Date)]
     public string? DataUrodzenia {get; set;}
     [Required] public string? Plec {get; set;}
-    [Required]  public string? Kraj {get; set;}
+    [Required]  public long? Kraj {get; set;}
     [Required] public string? Miasto {get; set;}
     
 
