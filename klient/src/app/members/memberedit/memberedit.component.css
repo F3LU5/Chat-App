@@ -1,10 +1,8 @@
-/* Ogólny wygląd sekcji */
 .row {
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
-/* Stylowanie karty profilowej */
 .card {
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -16,13 +14,11 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
-/* Stylowanie obrazu w karcie */
 .card-img {
     border-radius: 12px 12px 0 0;
     object-fit: cover;
 }
 
-/* Nagłówek sekcji */
 h1 {
     font-size: 2rem;
     color: #333;
@@ -30,7 +26,6 @@ h1 {
     margin-bottom: 20px;
 }
 
-/* Wygląd sekcji z informacjami o użytkowniku */
 .card-body {
     padding: 25px;
     background-color: #f8f9fa;
@@ -51,7 +46,6 @@ h1 {
     font-size: 1rem;
 }
 
-/* Footer karty */
 .card-footer {
     background-color: #f8f9fa;
     padding: 15px;
@@ -59,7 +53,6 @@ h1 {
     text-align: center;
 }
 
-/* Przycisk zapisz */
 .card-footer .btn {
     font-size: 1.1rem;
     background-color: #28a745;
@@ -76,7 +69,6 @@ h1 {
     border-color: #1e7e34;
 }
 
-/* Ostrzeżenie, gdy formularz jest brudny */
 .alert-info {
     background-color: #cce5ff;
     border-color: #b8daff;
@@ -86,7 +78,6 @@ h1 {
     padding: 15px;
 }
 
-/* Stylowanie formularzy */
 textarea.form-control, input.form-control {
     border-radius: 12px;
     padding: 12px;
@@ -100,7 +91,6 @@ textarea.form-control:focus, input.form-control:focus {
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-/* Stylowanie kart zakładek */
 .member-tabset .nav-tabs {
     border-bottom: 2px solid #007bff;
 }
@@ -129,14 +119,12 @@ textarea.form-control:focus, input.form-control:focus {
     border-color: #007bff;
 }
 
-/* Stylizacja tabeli z opcjami */
 .member-tabset .tab-content {
     padding-top: 20px;
     background-color: #f8f9fa;
     border-radius: 12px;
 }
 
-/* Stylowanie sekcji z opisem pracy */
 textarea.form-control {
     border-radius: 12px;
     padding: 15px;
@@ -151,7 +139,6 @@ textarea.form-control:focus {
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-/* Stylowanie inputa z lokalizacją */
 input.form-control {
     border-radius: 12px;
     padding: 12px;
@@ -165,7 +152,6 @@ input.form-control:focus {
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-/* Stylowanie sekcji edytowania zdjęcia */
 .app-zdjprofeditor {
     display: flex;
     flex-direction: column;
@@ -199,7 +185,6 @@ input.form-control:focus {
     border-color: #004085;
 }
 
-/* Responsywność */
 @media (max-width: 768px) {
     .col-4, .col-8 {
         width: 100%;

@@ -1,25 +1,21 @@
-/* Stylowanie obrazu */
 .img-thumbnail {
     margin: 25px;
     width: 85%;
     height: 85%;
 }
 
-/* Stylowanie karty profilu */
 .card-body {
     padding: 0 25px;
 }
 
-/* Stylowanie stopki karty */
 .card-footer {
     padding: 10px 15px;
     border-top: none;
 }
 
-/* Stylowanie przycisku "Wiadomość" */
 .card-footer .btn-success {
-    background-color: #ff6f00; /* Intensywny pomarańczowy */
-    border-color: #ff6f00; /* Taki sam kolor dla obramowania */
+    background-color: #ff6f00; 
+    border-color: #ff6f00; 
     color: white;
     font-size: 1.1rem;
     border-radius: 50px;
@@ -28,19 +24,16 @@
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-/* Efekt hover dla przycisku "Wiadomość" */
 .card-footer .btn-success:hover {
-    background-color: #e65c00; /* Mniejszy odcień pomarańczowego przy hover */
+    background-color: #e65c00;
     border-color: #e65c00;
 }
 
-/* Efekt focus dla przycisku "Wiadomość" */
 .card-footer .btn-success:focus {
-    box-shadow: 0 0 0 0.25rem rgba(255, 111, 0, 0.5); /* Efekt podświetlenia */
+    box-shadow: 0 0 0 0.25rem rgba(255, 111, 0, 0.5);
     background-color: #e65c00;
 }
 
-/* Stylowanie karty w zakładkach */
 .member-tabset .nav-tabs {
     border-bottom: 2px solid #007bff;
 }
@@ -69,14 +62,12 @@
     border-color: #007bff;
 }
 
-/* Stylowanie treści zakładek */
 .member-tabset .tab-content {
     padding-top: 20px;
     background-color: #f8f9fa;
     border-radius: 12px;
 }
 
-/* Stylowanie formularzy */
 textarea.form-control, input.form-control {
     border-radius: 12px;
     padding: 12px;
@@ -90,7 +81,6 @@ textarea.form-control:focus, input.form-control:focus {
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-/* Stylowanie sekcji z opisem pracy */
 textarea.form-control {
     border-radius: 12px;
     padding: 15px;
@@ -105,7 +95,6 @@ textarea.form-control:focus {
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-/* Stylowanie inputa z lokalizacją */
 input.form-control {
     border-radius: 12px;
     padding: 12px;
@@ -119,7 +108,6 @@ input.form-control:focus {
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-/* Stylowanie przycisku edytowania zdjęcia */
 .app-zdjprofeditor {
     display: flex;
     flex-direction: column;
@@ -153,7 +141,6 @@ input.form-control:focus {
     border-color: #004085;
 }
 
-/* Stylowanie informacji o użytkowniku w sekcji profilu */
 .card-body {
     padding: 25px;
     background-color: #f8f9fa;
@@ -174,7 +161,6 @@ input.form-control:focus {
     font-size: 1rem;
 }
 
-/* Stylowanie ostrzeżenia, gdy formularz jest brudny */
 .alert-info {
     background-color: #cce5ff;
     border-color: #b8daff;
@@ -184,7 +170,6 @@ input.form-control:focus {
     padding: 15px;
 }
 
-/* Stylowanie sekcji z zakładkami */
 .member-tabset .nav-tabs {
     border-bottom: 2px solid #007bff;
 }
@@ -213,7 +198,6 @@ input.form-control:focus {
     border-color: #007bff;
 }
 
-/* Stylizacja formularzy */
 textarea.form-control, input.form-control {
     border-radius: 12px;
     padding: 12px;
@@ -227,7 +211,6 @@ textarea.form-control:focus, input.form-control:focus {
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-/* Responsywność */
 @media (max-width: 768px) {
     .col-4, .col-8 {
         width: 100%;

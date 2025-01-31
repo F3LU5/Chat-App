@@ -11,18 +11,17 @@ import { RoleComponent } from '../../_modele/role/role.component';
   templateUrl: './user-management.component.html',
   styleUrl: './user-management.component.css'
 })
-export class UserManagementComponent implements OnInit{
+export class UserManagementComponent implements OnInit {
   private adminService = inject(AdminService);
   private modalService = inject(BsModalService);
-  users: User[] =[];
+  users: User[] = [];
   bsModalRef: BsModalRef<RoleComponent> = new BsModalRef<RoleComponent>();
-
 
   ngOnInit(): void {
     this.getUsersWithRoles();
   }
 
-  openRolesModal(user: User){
+  openRolesModal(user: User) {
     const initialState: ModalOptions = {
       class: 'modal-lg',
       initialState: {
@@ -33,23 +32,36 @@ export class UserManagementComponent implements OnInit{
         users: this.users,
         rolesUpdated: false
       }
-    }
+    };
     this.bsModalRef = this.modalService.show(RoleComponent, initialState);
     this.bsModalRef.onHide?.subscribe({
       next: () => {
-        if(this.bsModalRef.content && this.bsModalRef.content.rolesUpdated){
+        if (this.bsModalRef.content && this.bsModalRef.content.rolesUpdated) {
           const selectedRoles = this.bsModalRef.content.selectedRoles;
           this.adminService.updateUserRoles(user.username, selectedRoles).subscribe({
             next: roles => user.roles = roles
-          })
+          });
         }
       }
-    })
+    });
   }
 
-  getUsersWithRoles(){
+  getUsersWithRoles() {
     this.adminService.getUserWithRoles().subscribe({
       next: users => this.users = users
-    })
+    });
+  }
+
+  deleteUser(user: User) {
+    if (confirm(`Czy na pewno chcesz usunąć użytkownika ${user.username}?`)) {
+      this.adminService.deleteUser(user.username).subscribe({
+        next: () => {
+          this.users = this.users.filter(u => u.username !== user.username);
+        },
+        error: err => {
+          alert('Wystąpił błąd podczas usuwania użytkownika.');
+        }
+      });
+    }
   }
 }

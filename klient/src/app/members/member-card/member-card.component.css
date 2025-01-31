@@ -1,17 +1,15 @@
-/* Kontener, w którym wyśrodkowane będą karty */
 .card-container {
     display: flex;
-    justify-content: center; /* Wyśrodkowanie poziome */
-    align-items: center; /* Wyśrodkowanie pionowe */
-    flex-wrap: wrap; /* Jeśli karty nie mieszczą się na jednej linii, przenoszą się na następną */
-    gap: 20px; /* Odstęp pomiędzy kartami */
-    min-height: 100vh; /* Zapewnia, że kontener będzie miał co najmniej wysokość okna przeglądarki */
+    justify-content: center;
+    align-items: center; 
+    flex-wrap: wrap; 
+    gap: 20px; 
+    min-height: 100vh;
 }
 
 .srodeczek{
     margin-top: 100%;
 }
-/* Zwiększenie cienia karty przy najechaniu */
 .card {
     border: 1px solid #ddd;
     border-radius: 12px;
@@ -23,13 +21,12 @@
     height: 90%;
 }
 
-/* Efekt podniesienia karty przy najechaniu */
 .card:hover {
-    transform: translateY(-10px); /* Podniesienie karty */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Dodatkowy cień */
+    transform: translateY(-10px); 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
-/* Efekt powiększenia obrazu przy najechaniu */
+
 .card:hover img {
     transform: scale(1.1);
     transition-duration: 0.3s;
@@ -42,14 +39,14 @@
     transition-timing-function: ease-out;
 }
 
-/* Przestrzeń wokół obrazu */
+
 .card-img-wrapper {
     position: relative;
     overflow: hidden;
     border-radius: 12px 12px 0 0;
 }
 
-/* Wyrównanie ikon na obrazie */
+
 .member-icons {
     position: absolute;
     bottom: 10px;
@@ -70,33 +67,31 @@
     margin-left: 50%;
 }
 
-/* Przycisków z ikonami */
+
 .member-icons button {
     font-size: 14px;
     padding: 8px 12px;
-    background-color: rgba(0, 123, 255, 0.7); /* Przezroczystość dla ładniejszego efektu */
+    background-color: rgba(0, 123, 255, 0.7); 
     border: none;
     border-radius: 50%;
     transition: background-color 0.3s ease;
 }
 
 .member-icons button:hover {
-    background-color: rgba(0, 123, 255, 1); /* Intensyfikacja koloru przy hoverze */
+    background-color: rgba(0, 123, 255, 1);
 }
 
-/* Wyróżnianie karty po najechaniu */
 .card-body {
     transition: transform 0.3s ease-in-out;
 }
 
 .card:hover .card-body {
-    transform: translateY(-5px); /* Wyróżnienie treści karty przy najechaniu */
+    transform: translateY(-5px); 
 }
 
-/* Efekt w trakcie ładowania stanu online */
 .is-online {
     animation: fa-blink 1.5s linear infinite;
-    color: rgb(1, 189, 42); /* Kolor zielony dla online */
+    color: rgb(1, 189, 42); 
 }
 
 @keyframes fa-blink {
@@ -104,20 +99,18 @@
     100% { opacity: 0.4; }
 }
 
-/* Animacja wchodzenia elementów karty */
+
 .card-body {
     opacity: 0;
-    transform: translateY(20px); /* Początkowy stan (przesunięcie w dół) */
+    transform: translateY(20px);
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-/* Po załadowaniu karty elementy stają się widoczne */
 .card:hover .card-body {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* Zmiana wyglądu tekstu w karcie */
 .card-title {
     font-weight: bold;
     font-size: 1.1rem;
@@ -126,17 +119,16 @@
 }
 
 .card:hover .card-title {
-    color: #007bff; /* Kolor tytułu karty zmienia się na niebieski */
+    color: #007bff; 
 }
 
 .card-text {
     font-size: 0.9rem;
-    color: #6c757d; /* Kolor tekstu na szary */
+    color: #6c757d; 
 }
 
-/* Responsywność dla kart */
 @media (max-width: 768px) {
     .card {
-        margin-bottom: 15px; /* Zmniejszenie marginesu dla małych ekranów */
+        margin-bottom: 15px; 
     }
 }

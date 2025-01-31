@@ -1,9 +1,7 @@
-<!-- Pasek boczny -->
 <div class="sidebar" [class.open]="isSidebarOpen">
   <div class="container">
     <button class="menu-btn" (click)="toggleSidebar()" [class.open]="isSidebarOpen">☰</button>
     
-    <!-- Menu - Zaproszenia, Lista znajomych, Wiadomości -->
     <ul class="navbar-nav">
       @if (ObslugaKonta.aktualnyUzytkownik()){
       <li class="nav-item">
@@ -21,7 +19,6 @@
       }
     </ul>
 
-    <!-- Użytkownik - Avatar i dropdown -->
     @if (ObslugaKonta.aktualnyUzytkownik()){
       <div dropdown class="dropdown">
         <img class="me-2" src="{{ObslugaKonta.aktualnyUzytkownik()?.zdjecieUrl || './assets/user.png'}}" alt="Avatar użytkownika" class="user-avatar">
@@ -34,7 +31,6 @@
       </div>
     }
 
-    <!-- Formularz logowania -->
     @if (!ObslugaKonta.aktualnyUzytkownik()){
       <form #FormularzLogowania="ngForm" (ngSubmit)="login()" class="d-flex flex-column formularz-logowania" autocomplete="off">
         <input name="nazwauzytkownika" [(ngModel)]="model.username" class="form-control mb-2" type="text" placeholder="Nazwa Użytkownika">

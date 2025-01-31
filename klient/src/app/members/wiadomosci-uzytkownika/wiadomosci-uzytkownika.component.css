@@ -69,11 +69,10 @@
     padding: 10px;
     height: 450px;
     display: flex;
-    flex-direction: column-reverse; /* Sprawia, że zawartość jest odwrócona */
+    flex-direction: column-reverse; 
 }
 
 
-/* Nowy styl dla formularza */
 .card-footer {
     display: flex;
     justify-content: center;
@@ -104,11 +103,10 @@
     font-size: 14px;
 }
 
-/* Styl dla przycisku i ikony */
 .btn {
     width: 50px;
     height: 50px;
-    border-radius: 50%; /* Przyciski są teraz okrągłe */
+    border-radius: 50%; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -120,8 +118,8 @@
 }
 
 .btn:hover {
-    background-color: #0056b3; /* Zmiana koloru przycisku przy najechaniu */
-    transform: scale(1.1); /* Powiększenie przycisku przy najechaniu */
+    background-color: #0056b3; 
+    transform: scale(1.1);
 }
 
 .btn:disabled {
@@ -130,5 +128,5 @@
 }
 
 .fa-arrow-right {
-    font-size: 20px; /* Rozmiar ikony strzałki */
+    font-size: 20px; 
 }

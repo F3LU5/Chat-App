@@ -4,11 +4,11 @@
 }
 
 .speech-to-text button {
-  padding: 5px 10px;  /* Zmniejszamy padding, aby przycisk był mniejszy */
-  font-size: 1.5rem;  /* Ustalamy rozmiar tekstu ikony */
-  border-radius: 50%;  /* Zaokrąglamy przycisk, aby wyglądał jak okrąg */
-  width: 50px; /* Określamy stałą szerokość przycisku */
-  height: 50px; /* Określamy stałą wysokość przycisku */
+  padding: 5px 10px;  
+  font-size: 1.5rem; 
+  border-radius: 50%;
+  width: 50px; 
+  height: 50px; 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,11 +16,11 @@
 }
 
 .speech-to-text button i {
-  font-size: 1.5rem; /* Ustalamy rozmiar ikony mikrofonu */
+  font-size: 1.5rem;
 }
 
 .speech-to-text button:hover {
-  background-color: #f0f0f0; /* Kolor przycisku przy hover */
+  background-color: #f0f0f0; 
 }
 
 .speech-to-text button:focus {
@@ -28,13 +28,13 @@
 }
 
 .speech-to-text button.btn-danger {
-  background-color: #ff6f00; /* Kolor przycisku gdy mówienie jest aktywne */
+  background-color: #ff6f00;
   border-color: #ff6f00;
   color: white;
 }
 
 .speech-to-text button.btn-secondary {
-  background-color: #007bff; /* Kolor przycisku gdy mówienie jest nieaktywne */
+  background-color: #007bff; 
   border-color: #007bff;
   color: white;
 }
