@@ -11,6 +11,7 @@ import { PresenceService } from '../../_uslugi/presence.service';
   styleUrl: './member-card.component.css',
 })
 export class MemberCardComponent {
+  [x: string]: any;
   private presenceService = inject(PresenceService);
   member = input.required<Uzytkownik>();
   isOnline = computed(()=> this.presenceService.onlineUsers().includes(this.member().username));
