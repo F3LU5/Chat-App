@@ -31,7 +31,7 @@
                             <strong>{{isOutbox ? message.recipientUsername : message.senderUsername}}</strong>
                         </div>
                     </td>
-                    <td>{{formatMessageDate(message.messageSent)}}</td>
+                    <td>{{message.messageSent | timeago}}</td>
                     <td (click)="$event.stopPropagation()">
                         <button (click)="deleteMessage(message.id)" class="btn btn-danger animate__animated animate__fadeIn animate__delay-1s">Usuń</button>
                     </td>
