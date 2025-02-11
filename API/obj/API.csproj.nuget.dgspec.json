@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\development\\Pracainzynierska\\Chat-App-Role\\API\\API.csproj": {}
+    "E:\\development\\Pracainzynierska\\Nowy folder\\CHYBA POPRAWIONE NAZEWNICTWA\\Chat-Tomasz-Fela\\Chat-App-Role\\API\\API.csproj": {}
   },
   "projects": {
-    "E:\\development\\Pracainzynierska\\Chat-App-Role\\API\\API.csproj": {
+    "E:\\development\\Pracainzynierska\\Nowy folder\\CHYBA POPRAWIONE NAZEWNICTWA\\Chat-Tomasz-Fela\\Chat-App-Role\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\development\\Pracainzynierska\\Chat-App-Role\\API\\API.csproj",
+        "projectUniqueName": "E:\\development\\Pracainzynierska\\Nowy folder\\CHYBA POPRAWIONE NAZEWNICTWA\\Chat-Tomasz-Fela\\Chat-App-Role\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "E:\\development\\Pracainzynierska\\Chat-App-Role\\API\\API.csproj",
+        "projectPath": "E:\\development\\Pracainzynierska\\Nowy folder\\CHYBA POPRAWIONE NAZEWNICTWA\\Chat-Tomasz-Fela\\Chat-App-Role\\API\\API.csproj",
         "packagesPath": "C:\\Users\\Tomek\\.nuget\\packages\\",
-        "outputPath": "E:\\development\\Pracainzynierska\\Chat-App-Role\\API\\obj\\",
+        "outputPath": "E:\\development\\Pracainzynierska\\Nowy folder\\CHYBA POPRAWIONE NAZEWNICTWA\\Chat-Tomasz-Fela\\Chat-App-Role\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Tomek\\AppData\\Roaming\\NuGet\\NuGet.Config"

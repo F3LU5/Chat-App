@@ -9,13 +9,13 @@ public class RegDTO
     
     public string UserName { get; set; } = string.Empty;
 
-    [Required] public string? Onas {get; set;}
+    [Required] public string? Initials {get; set;}
     [Required] 
     [DataType(DataType.Date)]
-    public string? DataUrodzenia {get; set;}
-    [Required] public string? Plec {get; set;}
-    [Required]  public long? Kraj {get; set;}
-    [Required] public string? Miasto {get; set;}
+    public string? DateOfBirth {get; set;}
+    [Required] public string? Gender {get; set;}
+    [Required]  public long? PhoneNumber {get; set;}
+    [Required] public string? Profession {get; set;}
     
 
     [Required]

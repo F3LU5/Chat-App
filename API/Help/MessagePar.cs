@@ -1,8 +1,8 @@
 using System;
 
-namespace API.Pomoc;
+namespace API.Help;
 
-public class MessagePar : WartoscUzytkownika
+public class MessagePar : UserValue
 {
     public string? Username { get; set; }
     public string Container { get; set; } = "Unread";

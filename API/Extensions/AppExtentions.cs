@@ -1,16 +1,16 @@
 using System;
 using API.Data;
-using API.Interfejsy;
-using API.Pomoc;
+using API.Interfaces;
+using API.Help;
 using API.SignalR;
-using API.Uslugi;
+using API.Services;
 using Microsoft.EntityFrameworkCore;
 
-namespace API.Rozszerzenia;
+namespace API.Extensions;
 
-public static class RozszerzeniaAplikacji
+public static class AppExtentions
 {
-    public static IServiceCollection AddRozszerzeniaAplikacji(this IServiceCollection services, IConfiguration config)
+    public static IServiceCollection AddAppExtentions(this IServiceCollection services, IConfiguration config)
     {
         services.AddControllers();
         services.AddDbContext<DataContext>(opt =>
@@ -19,11 +19,11 @@ public static class RozszerzeniaAplikacji
         });
 
         services.AddCors();
-        services.AddScoped<UslugiToken, TokenService>();
+        services.AddScoped<TokenServices, TokenService>();
         services.AddScoped<IUserRepository, UserRepository>();
-        services.AddScoped<DodawanieZdjeciaService, ZdjecieService>();
+        services.AddScoped<AddingImagesService, ImageService>();
         services.AddScoped<IMessageRepo, MessageRepo>();
-        services.AddScoped<LogoUzytkownikaAktywny>();
+        services.AddScoped<UserLogoActive>();
         services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
         services.AddSignalR();

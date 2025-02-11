@@ -1,21 +1,21 @@
 using System;
-using API.Interfejsy;
-using API.Pomoc;
+using API.Interfaces;
+using API.Help;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Microsoft.Extensions.Options;
 
-namespace API.Uslugi;
+namespace API.Services;
 
-public class ZdjecieService : DodawanieZdjeciaService
+public class ImageService : AddingImagesService
 {
     private readonly Cloudinary _cloudinary;
-    public ZdjecieService(IOptions<CloudinarySettings> config)
+    public ImageService(IOptions<CloudinarySettings> config)
     {
         var acc = new Account(config.Value.CloudName, config.Value.ApiKey, config.Value.ApiSecret);
         _cloudinary = new Cloudinary(acc);
     }
-    public async Task<ImageUploadResult> AddZdjecieAsync(IFormFile file)
+    public async Task<ImageUploadResult> AddPhotoAsync(IFormFile file)
     {
         var uploadResult = new ImageUploadResult();
         if(file.Length > 0)
@@ -33,7 +33,7 @@ public class ZdjecieService : DodawanieZdjeciaService
         return uploadResult;
     }
 
-    public async Task<DeletionResult> DeleteZdjecieAsync(string publicId)
+    public async Task<DeletionResult> DeleteImageAsync(string publicId)
     {
         var deleteParams = new DeletionParams(publicId);
         return await _cloudinary.DestroyAsync(deleteParams);

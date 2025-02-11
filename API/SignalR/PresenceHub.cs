@@ -1,5 +1,5 @@
 using System;
-using API.Rozszerzenia;
+using API.Extensions;
 using Microsoft.AspNetCore.SignalR;
 
 namespace API.SignalR;
@@ -16,10 +16,7 @@ public class PresenceHub(PresenceTracker tracker) : Hub
 
         var currentUsers = await tracker.GetOnlineUsers();
         await Clients.All.SendAsync("GetOnlineUsers", currentUsers);
-        Console.WriteLine($"Client connected: {Context.ConnectionId}");
         var token = Context.GetHttpContext()?.Request.Query["access_token"];
-        Console.WriteLine($"Client connected: {Context.ConnectionId}, Token: {token}");
-        Console.WriteLine($"Token: {token}");
         
         await base.OnConnectedAsync();
     }
@@ -32,7 +29,6 @@ public class PresenceHub(PresenceTracker tracker) : Hub
         if(isOffline) await Clients.Others.SendAsync("UserIsOffline", Context.User?.GetUsername());
 
 
-        Console.WriteLine($"Client disconnected: {Context.ConnectionId}");
         await base.OnDisconnectedAsync(exception);
     }
 }

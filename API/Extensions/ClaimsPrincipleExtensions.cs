@@ -1,7 +1,7 @@
 using System;
 using System.Security.Claims;
 
-namespace API.Rozszerzenia;
+namespace API.Extensions;
 
 public static class ClaimsPrincipleExtensions
 {

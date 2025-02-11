@@ -32,14 +32,14 @@ namespace API.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    DataUrodzenia = table.Column<DateOnly>(type: "TEXT", nullable: false),
-                    Onas = table.Column<string>(type: "TEXT", nullable: false),
-                    Stworzone = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    OstatniaAktywnosc = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Plec = table.Column<string>(type: "TEXT", nullable: false),
-                    Wstep = table.Column<string>(type: "TEXT", nullable: true),
-                    Miasto = table.Column<string>(type: "TEXT", nullable: false),
-                    Kraj = table.Column<string>(type: "TEXT", nullable: false),
+                    DateOfBirth = table.Column<DateOnly>(type: "TEXT", nullable: false),
+                    Initials = table.Column<string>(type: "TEXT", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    LastActive = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Gender = table.Column<string>(type: "TEXT", nullable: false),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    Profession = table.Column<string>(type: "TEXT", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "TEXT", nullable: false),
                     UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
@@ -48,7 +48,6 @@ namespace API.Migrations
                     PasswordHash = table.Column<string>(type: "TEXT", nullable: true),
                     SecurityStamp = table.Column<string>(type: "TEXT", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "TEXT", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "TEXT", nullable: true),
                     PhoneNumberConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
                     TwoFactorEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(type: "TEXT", nullable: true),
@@ -211,21 +210,21 @@ namespace API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Zdjecia",
+                name: "Images",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Url = table.Column<string>(type: "TEXT", nullable: false),
-                    Glownezdj = table.Column<bool>(type: "INTEGER", nullable: false),
+                    MainImage = table.Column<bool>(type: "INTEGER", nullable: false),
                     PublicId = table.Column<string>(type: "TEXT", nullable: true),
                     AppUserId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Zdjecia", x => x.Id);
+                    table.PrimaryKey("PK_Images", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Zdjecia_AspNetUsers_AppUserId",
+                        name: "FK_Images_AspNetUsers_AppUserId",
                         column: x => x.AppUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -233,18 +232,18 @@ namespace API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Polaczenia",
+                name: "Connections",
                 columns: table => new
                 {
-                    PolaczenieId = table.Column<string>(type: "TEXT", nullable: false),
+                    ConnectionId = table.Column<string>(type: "TEXT", nullable: false),
                     Username = table.Column<string>(type: "TEXT", nullable: false),
                     GroupName = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Polaczenia", x => x.PolaczenieId);
+                    table.PrimaryKey("PK_Connections", x => x.ConnectionId);
                     table.ForeignKey(
-                        name: "FK_Polaczenia_Groups_GroupName",
+                        name: "FK_Connections_Groups_GroupName",
                         column: x => x.GroupName,
                         principalTable: "Groups",
                         principalColumn: "Name");
@@ -298,13 +297,13 @@ namespace API.Migrations
                 column: "SenderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Polaczenia_GroupName",
-                table: "Polaczenia",
+                name: "IX_Connections_GroupName",
+                table: "Connections",
                 column: "GroupName");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Zdjecia_AppUserId",
-                table: "Zdjecia",
+                name: "IX_Images_AppUserId",
+                table: "Images",
                 column: "AppUserId");
         }
 
@@ -330,10 +329,10 @@ namespace API.Migrations
                 name: "Messages");
 
             migrationBuilder.DropTable(
-                name: "Polaczenia");
+                name: "Connections");
 
             migrationBuilder.DropTable(
-                name: "Zdjecia");
+                name: "Images");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

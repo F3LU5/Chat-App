@@ -7,11 +7,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
-namespace API.Rozszerzenia;
+namespace API.Extensions;
 
-public static class RozszerzenieTozsamosci
+public static class IdentityExtension
 {
-    public static IServiceCollection AddRozszerzonaTozsamosc(this IServiceCollection services, IConfiguration config)
+    public static IServiceCollection AddIdentityExtension(this IServiceCollection services, IConfiguration config)
     {
 
         services.AddIdentityCore<AppUser>(opt => {
@@ -24,11 +24,11 @@ public static class RozszerzenieTozsamosci
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         .AddJwtBearer(options =>
 {
-    var kluczTokenu = config["kluczTokenu"] ?? throw new Exception("KluczTokenu nie zostął znaleziony");
+    var tokenKey = config["tokenKey"] ?? throw new Exception("tokenKey nie został znaleziony");
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(kluczTokenu)),
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenKey)),
         ValidateIssuer = false,
         ValidateAudience = false
     };
@@ -39,7 +39,6 @@ public static class RozszerzenieTozsamosci
         var accessToken = context.Request.Query["access_token"];
         var path = context.HttpContext.Request.Path;
 
-        Console.WriteLine($"Path: {path}, Token: {accessToken}");
         
         if (!string.IsNullOrEmpty(accessToken) && path.StartsWithSegments("/hubs"))
         {

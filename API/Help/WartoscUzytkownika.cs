@@ -1,8 +1,8 @@
 using System;
 
-namespace API.Pomoc;
+namespace API.Help;
 
-public class WartoscUzytkownika
+public class UserValue
 {
     private const int MaxPageSize = 50;
     public int PageNumber { get; set; } = 1;

@@ -2,8 +2,8 @@ using System;
 
 namespace API.Entities;
 
-public class Polaczenie
+public class Connection
 {
-    public required string PolaczenieId { get; set; }
+    public required string ConnectionId { get; set; }
     public required string Username { get; set; }
 }

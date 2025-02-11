@@ -1,8 +1,8 @@
 using System;
 
-namespace API.Pomoc;
+namespace API.Help;
 
-public class NaglowekPaginacji(int currentPage, int itemsPerPage, int totalItems, int totalPages)
+public class PaginationHeader(int currentPage, int itemsPerPage, int totalItems, int totalPages)
 {
     public int CurrentPage  { get; set; } = currentPage;
     public int ItemsPerPage  { get; set; } = itemsPerPage;

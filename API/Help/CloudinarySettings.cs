@@ -1,6 +1,6 @@
 using System;
 
-namespace API.Pomoc;
+namespace API.Help;
 
 public class CloudinarySettings
 {
