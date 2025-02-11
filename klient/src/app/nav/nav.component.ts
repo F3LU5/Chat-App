@@ -1,21 +1,23 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { AccountService } from '../_uslugi/account.service';
+
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { TitleCasePipe } from '@angular/common';
-import { PosiadaroleDirective } from '../dyrektywy/posiadarole.directive';
+import { HasroleDirective } from '../directives/hasrole.directive';
+import { AccountService } from '../_services/account.service';
+;
 
 @Component({
   selector: 'app-nav',
   standalone: true,
-  imports: [FormsModule, BsDropdownModule, RouterLink, RouterLinkActive, TitleCasePipe, PosiadaroleDirective],
+  imports: [FormsModule, BsDropdownModule, RouterLink, RouterLinkActive, TitleCasePipe, HasroleDirective],
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent {
-  ObslugaKonta = inject(AccountService);
+  accountService = inject(AccountService);
   private router = inject(Router);
   private toaser = inject(ToastrService);
   model: any = {};
@@ -26,7 +28,7 @@ export class NavComponent {
   }
 
   login() {
-    this.ObslugaKonta.login(this.model).subscribe({
+    this.accountService.login(this.model).subscribe({
       next: _ => {
         this.router.navigateByUrl('/members');
       },
@@ -34,8 +36,8 @@ export class NavComponent {
     });
   }
 
-  wyloguj() {
-    this.ObslugaKonta.wyloguj();
+  logout() {
+    this.accountService.logout();
     this.router.navigateByUrl('/');
   }
 }

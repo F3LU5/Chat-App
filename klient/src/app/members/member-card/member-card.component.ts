@@ -1,7 +1,7 @@
 import { Component, computed, inject, input} from '@angular/core';
-import { Uzytkownik } from '../../_modele/uzytkownik';
 import { RouterLink } from '@angular/router';
-import { PresenceService } from '../../_uslugi/presence.service';
+import { PresenceService } from '../../_services/presence.service';
+import { Member } from '../../_models/member';
 
 @Component({
   selector: 'app-member-card',
@@ -11,7 +11,8 @@ import { PresenceService } from '../../_uslugi/presence.service';
   styleUrl: './member-card.component.css',
 })
 export class MemberCardComponent {
+  [x: string]: any;
   private presenceService = inject(PresenceService);
-  member = input.required<Uzytkownik>();
+  member = input.required<Member>();
   isOnline = computed(()=> this.presenceService.onlineUsers().includes(this.member().username));
 }

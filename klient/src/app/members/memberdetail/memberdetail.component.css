@@ -108,7 +108,7 @@ input.form-control:focus {
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-.app-zdjprofeditor {
+.app-profileimages-edit {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -118,7 +118,7 @@ input.form-control:focus {
     border-radius: 12px;
 }
 
-.app-zdjprofeditor img {
+.app-profileimages-edit img {
     border-radius: 50%;
     width: 120px;
     height: 120px;
@@ -126,7 +126,7 @@ input.form-control:focus {
     margin-bottom: 15px;
 }
 
-.app-zdjprofeditor button {
+.app-profileimages-edit button {
     font-size: 1rem;
     padding: 10px 20px;
     background-color: #007bff;
@@ -136,7 +136,7 @@ input.form-control:focus {
     transition: background-color 0.3s ease;
 }
 
-.app-zdjprofeditor button:hover {
+.app-profileimages-edit button:hover {
     background-color: #0056b3;
     border-color: #004085;
 }
@@ -216,7 +216,7 @@ textarea.form-control:focus, input.form-control:focus {
         width: 100%;
     }
 
-    .card-body, .app-zdjprofeditor {
+    .card-body, .app-profileimages-edit {
         padding: 15px;
     }
 
@@ -224,7 +224,7 @@ textarea.form-control:focus, input.form-control:focus {
         font-size: 1rem;
     }
 
-    .app-zdjprofeditor img {
+    .app-profileimages-edit img {
         width: 100px;
         height: 100px;
     }

@@ -11,7 +11,7 @@
           [boundaryLinks]="true" 
           [totalItems]="memberService.paginatedResult()?.pagination!.totalItems"
           [itemsPerPage]="memberService.paginatedResult()?.pagination!.itemsPerPage"
-          (pageChanged)="zmianaStrony($event)"
+          (pageChanged)="changePage($event)"
           [maxSize]="10"
           previousText="&lsaquo;" 
           nextText="&rsaquo;" 

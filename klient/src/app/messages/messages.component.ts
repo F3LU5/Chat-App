@@ -1,0 +1,60 @@
+import { Component, inject, OnInit } from '@angular/core';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { NgClass } from '@angular/common';
+import { DatePipe } from '@angular/common';
+import { TimeagoModule } from 'ngx-timeago';
+import { MessageService } from '../_services/message.service';
+import { Message } from '../_models/message';
+
+
+
+
+@Component({
+  selector: 'app-messages',
+  standalone: true,
+  imports: [NgClass, PaginationModule, ButtonsModule, FormsModule, RouterLink, TimeagoModule],
+  templateUrl: './messages.component.html',
+  styleUrl: './messages.component.css'
+})
+export class MessagesComponent implements OnInit{
+  messageService = inject(MessageService);
+  container = 'Inbox';
+  pageNumber = 1;
+  pageSize = 5;
+  datePipe = new DatePipe('en-US');
+  isOutbox = this.container === 'Outbox';
+  
+  ngOnInit(): void {
+    this.loadMessages();
+  }
+  loadMessages() {
+    this.messageService.getMessages(this.pageNumber, this.pageSize, this.container);
+  }
+  getTrase(message: Message){
+    if(this.container==='Outbox') return `/members/${message.recipientUsername}`;
+    else return `/members/${message.senderUsername}`;
+  }
+
+  deleteMessage(id: number){
+    this.messageService.deleteMessage(id).subscribe({
+      next:_ => {
+        this.messageService.paginatedResult.update(prev => {
+          if(prev && prev.items){
+            prev.items.splice(prev.items.findIndex(m=>m.id===id),1);
+            return prev;
+          }
+          return prev;
+        })
+      } 
+    })
+  }
+  changePage(event:any){
+    if(this.pageNumber !== event.page){
+      this.pageNumber = event.page;
+      this.loadMessages();
+    }
+  }
+}

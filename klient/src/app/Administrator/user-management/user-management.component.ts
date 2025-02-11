@@ -1,8 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { AdminService } from '../../_uslugi/admin.service';
-import { User } from '../../_modele/user';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
-import { RoleComponent } from '../../_modele/role/role.component';
+import { AdminService } from '../../_services/admin.service';
+import { User } from '../../_models/user';
+import { RoleComponent } from '../../_models/role/role.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-user-management',
@@ -21,7 +22,7 @@ export class UserManagementComponent implements OnInit {
     this.getUsersWithRoles();
   }
 
-  openRolesModal(user: User) {
+  openRolesModal(user: User): void{
     const initialState: ModalOptions = {
       class: 'modal-lg',
       initialState: {
@@ -46,21 +47,18 @@ export class UserManagementComponent implements OnInit {
     });
   }
 
-  getUsersWithRoles() {
+  getUsersWithRoles(): void {
     this.adminService.getUserWithRoles().subscribe({
       next: users => this.users = users
     });
   }
 
-  deleteUser(user: User) {
+  deleteUser(user: User): void {
     if (confirm(`Czy na pewno chcesz usunąć użytkownika ${user.username}?`)) {
       this.adminService.deleteUser(user.username).subscribe({
         next: () => {
           this.users = this.users.filter(u => u.username !== user.username);
         },
-        error: err => {
-          alert('Wystąpił błąd podczas usuwania użytkownika.');
-        }
       });
     }
   }

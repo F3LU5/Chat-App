@@ -1,9 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { UzytkownicyService } from '../../_uslugi/uzytkownicy.service';
-import { Subscriber } from 'rxjs';
-import { Uzytkownik } from '../../_modele/uzytkownik';
 import { MemberCardComponent } from "../member-card/member-card.component";
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { MembersService } from '../../_services/members.service';
+
+interface ChangeSide{
+  itemsPerPage: number;
+  page: number;
+}
 
 @Component({
   selector: 'app-listofmember',
@@ -13,7 +16,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
   styleUrl: './listofmember.component.css'
 })
 export class ListofmemberComponent implements OnInit {
-  memberService = inject(UzytkownicyService);
+  memberService = inject(MembersService);
   pageNumber = 1;
   pageSize = 5;
 
@@ -21,12 +24,14 @@ export class ListofmemberComponent implements OnInit {
   ngOnInit(): void {
     if(!this.memberService.paginatedResult()) this.loadMembers();
   }
-  loadMembers(){
+  
+  loadMembers(): void{
     this.memberService.getMembers(this.pageNumber, this.pageSize)
   }
-  zmianaStrony(event: any){
-    if(this.pageNumber !== event.page){
-      this.pageNumber = event.page;
+
+  changePage(changeSide: ChangeSide){
+    if(this.pageNumber !== changeSide.page){
+      this.pageNumber = changeSide.page;
       this.loadMembers();
     }
   }

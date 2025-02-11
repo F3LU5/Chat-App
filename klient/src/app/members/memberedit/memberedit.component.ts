@@ -1,39 +1,42 @@
 import { Component, HostListener, Inject, inject, OnInit, ViewChild } from '@angular/core';
-import { Uzytkownik } from '../../_modele/uzytkownik';
-import { AccountService } from '../../_uslugi/account.service';
-import { UzytkownicyService } from '../../_uslugi/uzytkownicy.service';
+
+
+
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { ZdjprofeditorComponent } from "../zdjprofeditor/zdjprofeditor.component";
+import { ProfileImagesComponent } from "../profileimages/profileimages-edit.component";
 import { DatePipe } from '@angular/common';
 import { TimeagoModule } from 'ngx-timeago';
+import { Member } from '../../_models/member';
+import { AccountService } from '../../_services/account.service';
+import { MembersService } from '../../_services/members.service';
 
 @Component({
   selector: 'app-memberedit',
   standalone: true,
-  imports: [TabsModule, FormsModule, ZdjprofeditorComponent, DatePipe, TimeagoModule],
+  imports: [TabsModule, FormsModule, ProfileImagesComponent, DatePipe, TimeagoModule],
   templateUrl: './memberedit.component.html',
   styleUrl: './memberedit.component.css'
 })
 export class MembereditComponent implements OnInit{
   @ViewChild('editForm') editForm?: NgForm;
-  @HostListener('window:beforeunload', ['$event']) powiadomienie($event:any){
+  @HostListener('window:beforeunload', ['$event']) notify($event:any){
     if (this.editForm?.dirty){
       $event.returnValue = true
     }
   }
 
-  member?: Uzytkownik;
+  member?: Member;
   private accountService = inject(AccountService);
-  private memberService = inject(UzytkownicyService);
+  private memberService = inject(MembersService);
   private toastr = inject(ToastrService)
 
   ngOnInit(): void {
     this.loadMember();
   }
   loadMember(){
-    const user = this.accountService.aktualnyUzytkownik();
+    const user = this.accountService.currentUser();
     if (!user) return;
     this.memberService.getMember(user.username).subscribe({
       next: member => this.member = member
@@ -54,7 +57,7 @@ export class MembereditComponent implements OnInit{
       }
     });
   }
-  onMemberChange(event: Uzytkownik){
+  onMemberChange(event: Member){
     this.member = event;
   }
   

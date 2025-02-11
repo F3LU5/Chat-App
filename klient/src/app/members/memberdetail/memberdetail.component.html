@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-4">
             <div class="card">
-                <img src="{{member.zdjecieUrl || './assets/user.png'}}" alt="{{member.onas}}" class="card-img img-thumbnail">
+                <img src="{{member.imageUrl || './assets/user.png'}}" alt="{{member.initials}}" class="card-img img-thumbnail">
                 <div class="card-body">
                     @if (presenceService.onlineUsers().includes(member.username)) {
                         <div class="mb-2">
@@ -11,23 +11,23 @@
                     }
                     <div>
                         <strong>Zawód:</strong>
-                        <p>{{member.miasto}}</p>
+                        <p>{{member.profession}}</p>
                     </div>
                     <div>
                         <strong>Numer Telefonu:</strong>
-                        <p>{{member.kraj}}</p>
+                        <p>{{member.phoneNumber}}</p>
                     </div>
                     <div>
-                        <strong>Wiek:</strong>
-                        <p>{{member.wiek}}</p>
+                        <strong>Age:</strong>
+                        <p>{{member.age}}</p>
                     </div>
                     <div>
                         <strong>Ostatnia Aktywność:</strong>
-                        <p>{{member.ostatniaAktywnosc | timeago}}</p>
+                        <p>{{member.lastActive | timeago}}</p>
                     </div>
                     <div>
                         <strong>Pracuje od:</strong>
-                        <p>{{member.stworzone | date: 'dd MMM yyyy'}}</p>
+                        <p>{{member.createdAt | date: 'dd MMM yyyy'}}</p>
                     </div>
                 </div>
                 <div class="card-footer">
@@ -39,14 +39,14 @@
         </div>
         <div class="col-8">
             <tabset class="member-tabset" #memberTabs>
-                <tab heading="Czym się zajmuje {{member.onas}} w Firmie" (selectTab)="onTabActivated($event)">
+                <tab heading="Czym się zajmuje {{member.initials}} w Firmie" (selectTab)="onTabActivated($event)">
                     <h4>O pracy</h4>
-                    <p>{{member.wstep}}</p>
+                    <p>{{member.description}}</p>
                 </tab>
                 <tab heading="Wiadomości" (selectTab)="onTabActivated($event)">
-                    <app-wiadomosci-uzytkownika 
+                    <app-membermessages 
                     [username]="member.username"
-                    ></app-wiadomosci-uzytkownika>
+                    ></app-membermessages>
                 </tab>
             </tabset>
         </div>
