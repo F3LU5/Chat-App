@@ -1,0 +1,205 @@
+.row {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.card {
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.card-img {
+    border-radius: 12px 12px 0 0;
+    object-fit: cover;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #333;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.card-body {
+    padding: 25px;
+    background-color: #f8f9fa;
+    border-radius: 0 0 12px 12px;
+}
+
+.card-body div {
+    margin-bottom: 15px;
+}
+
+.card-body strong {
+    font-size: 1.1rem;
+    color: #007bff;
+}
+
+.card-body p {
+    color: #333;
+    font-size: 1rem;
+}
+
+.card-footer {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 0 0 12px 12px;
+    text-align: center;
+}
+
+.card-footer .btn {
+    font-size: 1.1rem;
+    background-color: #28a745;
+    border-color: #28a745;
+    color: #fff;
+    border-radius: 50px;
+    padding: 12px 20px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.card-footer .btn:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+.alert-info {
+    background-color: #cce5ff;
+    border-color: #b8daff;
+    color: #004085;
+    font-weight: bold;
+    border-radius: 12px;
+    padding: 15px;
+}
+
+textarea.form-control, input.form-control {
+    border-radius: 12px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+textarea.form-control:focus, input.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.member-tabset .nav-tabs {
+    border-bottom: 2px solid #007bff;
+}
+
+.member-tabset .nav-item {
+    margin-right: 20px;
+}
+
+.member-tabset .nav-link {
+    border-radius: 50px;
+    padding: 10px 20px;
+    background-color: #f1f1f1;
+    color: #007bff;
+    font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.member-tabset .nav-link:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.member-tabset .nav-link.active {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+.member-tabset .tab-content {
+    padding-top: 20px;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+}
+
+textarea.form-control {
+    border-radius: 12px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    background-color: #f8f9fa;
+    transition: border-color 0.3s ease;
+}
+
+textarea.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+input.form-control {
+    border-radius: 12px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+input.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.app-profileimages-edit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+}
+
+.app-profileimages-edit img {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.app-profileimages-edit button {
+    font-size: 1rem;
+    padding: 10px 20px;
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+    border-radius: 50px;
+    transition: background-color 0.3s ease;
+}
+
+.app-profileimages-edit button:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+@media (max-width: 768px) {
+    .col-4, .col-8 {
+        width: 100%;
+    }
+
+    .card-body, .app-profileimages-edit {
+        padding: 15px;
+    }
+
+    .card-footer .btn {
+        font-size: 1rem;
+    }
+
+    .app-profileimages-edit img {
+        width: 100px;
+        height: 100px;
+    }
+}

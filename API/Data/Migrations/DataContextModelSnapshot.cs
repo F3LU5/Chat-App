@@ -57,7 +57,7 @@ namespace API.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateOnly>("DataUrodzenia")
+                    b.Property<DateOnly>("DateOfBirth")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
@@ -67,7 +67,7 @@ namespace API.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Kraj")
+                    b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -77,7 +77,7 @@ namespace API.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Miasto")
+                    b.Property<string>("Profession")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -89,30 +89,27 @@ namespace API.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Onas")
+                    b.Property<string>("Initials")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("OstatniaAktywnosc")
+                    b.Property<DateTime>("LastActive")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("TEXT");
-
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Plec")
+                    b.Property<string>("Gender")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("Stworzone")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -122,7 +119,7 @@ namespace API.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Wstep")
+                    b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -207,9 +204,9 @@ namespace API.Migrations
                     b.ToTable("Messages");
                 });
 
-            modelBuilder.Entity("API.Entities.Polaczenie", b =>
+            modelBuilder.Entity("API.Entities.Connection", b =>
                 {
-                    b.Property<string>("PolaczenieId")
+                    b.Property<string>("ConnectionId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("GroupName")
@@ -219,14 +216,14 @@ namespace API.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("PolaczenieId");
+                    b.HasKey("ConnectionId");
 
                     b.HasIndex("GroupName");
 
-                    b.ToTable("Polaczenia");
+                    b.ToTable("Connections");
                 });
 
-            modelBuilder.Entity("API.Entities.Zdjecie", b =>
+            modelBuilder.Entity("API.Entities.Image", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -235,7 +232,7 @@ namespace API.Migrations
                     b.Property<int>("AppUserId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("Glownezdj")
+                    b.Property<bool>("MainImage")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("PublicId")
@@ -249,7 +246,7 @@ namespace API.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.ToTable("Zdjecia");
+                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -374,17 +371,17 @@ namespace API.Migrations
                     b.Navigation("Sender");
                 });
 
-            modelBuilder.Entity("API.Entities.Polaczenie", b =>
+            modelBuilder.Entity("API.Entities.Connection", b =>
                 {
                     b.HasOne("API.Entities.Group", null)
-                        .WithMany("Polaczenia")
+                        .WithMany("Connections")
                         .HasForeignKey("GroupName");
                 });
 
-            modelBuilder.Entity("API.Entities.Zdjecie", b =>
+            modelBuilder.Entity("API.Entities.Image", b =>
                 {
                     b.HasOne("API.Entities.AppUser", "AppUser")
-                        .WithMany("Zdjecia")
+                        .WithMany("Images")
                         .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -441,12 +438,12 @@ namespace API.Migrations
 
                     b.Navigation("UserRoles");
 
-                    b.Navigation("Zdjecia");
+                    b.Navigation("Images");
                 });
 
             modelBuilder.Entity("API.Entities.Group", b =>
                 {
-                    b.Navigation("Polaczenia");
+                    b.Navigation("Connections");
                 });
 #pragma warning restore 612, 618
         }

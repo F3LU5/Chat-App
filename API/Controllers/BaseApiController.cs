@@ -1,10 +1,10 @@
 using System;
-using API.Pomoc;
+using API.Help;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
 
-[ServiceFilter(typeof(LogoUzytkownikaAktywny))]
+[ServiceFilter(typeof(UserLogoActive))]
 [ApiController]
 [Route("api/[controller]")]
 public class BaseApiController : ControllerBase

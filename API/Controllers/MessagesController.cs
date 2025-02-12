@@ -1,10 +1,10 @@
 using System;
 using API.DataTransferObject;
 using API.Entities;
-using API.Interfejsy;
-using API.Pomoc;
-using API.Rozszerzenia;
-using API.Uslugi;
+using API.Interfaces;
+using API.Help;
+using API.Extensions;
+using API.Services;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -38,7 +38,7 @@ public class MessagesController(IMessageRepo messageRepo, IUserRepository userRe
         messagePar.Username = User.GetUsername();
         var messages = await messageRepo.GetMessageForUser(messagePar);
         
-        Response.DodajPaginacjeNaglowka(messages);
+        Response.AddHeaderPagination(messages);
         return messages;
     }
     [HttpGet("thread/{username}")]     

@@ -1,8 +1,8 @@
 using System;
 using API.DataTransferObject;
 using API.Entities;
-using API.Pomoc;
-using API.Uslugi;
+using API.Help;
+using API.Services;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
@@ -19,17 +19,17 @@ public class UserRepository(DataContext context, IMapper mapper) : IUserReposito
     public async Task<AppUser?> GetUserByUsernameAsync(string username)
     {
         return await context.Users
-        .Include(x => x.Zdjecia)
+        .Include(x => x.Images)
         .SingleOrDefaultAsync(x => x.UserName == username);
     }
 
     public async Task<IEnumerable<AppUser>> GetUsersAsync()
     {
         return await context.Users
-        .Include(x => x.Zdjecia)
+        .Include(x => x.Images)
         .ToListAsync();
     }
-    public async Task<bool> ZapiszWszystkieAsync()
+    public async Task<bool> SaveAllAsync()
     {
         return await context.SaveChangesAsync() > 0;
     }
@@ -38,11 +38,11 @@ public class UserRepository(DataContext context, IMapper mapper) : IUserReposito
         context.Entry(user).State = EntityState.Modified;
     }
 
-    public async Task<ListaStron<MemberDTO>> GetMembersAsync(WartoscUzytkownika wartoscUzytkownika)
+    public async Task<PageList<MemberDTO>> GetMembersAsync(UserValue userValue)
     {
         var query = context.Users
         .ProjectTo<MemberDTO>(mapper.ConfigurationProvider);
-        return await ListaStron<MemberDTO>.StworzAsync(query, wartoscUzytkownika.PageNumber, wartoscUzytkownika.PageSize);
+        return await PageList<MemberDTO>.CreateAsync(query, userValue.PageNumber, userValue.PageSize);
     }
 
     public async Task<MemberDTO?> GetMemberAsync(string username)

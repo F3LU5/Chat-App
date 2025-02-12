@@ -41,10 +41,10 @@ public class Seed
         var admin = new AppUser
         {
             UserName = "admin",
-            Onas = "Admin",
-            Plec = "",
-            Miasto = "",
-            Kraj = "",
+            Initials = "Admin",
+            Gender = "",
+            Profession = "",
+            PhoneNumber = "",
         };
 
         await userManager.CreateAsync(admin, "Pa$$w0rd");

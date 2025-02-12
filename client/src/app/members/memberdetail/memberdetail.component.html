@@ -1,0 +1,53 @@
+
+    <div class="row">
+        <div class="col-4">
+            <div class="card">
+                <img src="{{member.imageUrl || './assets/user.png'}}" alt="{{member.initials}}" class="card-img img-thumbnail">
+                <div class="card-body">
+                    @if (presenceService.onlineUsers().includes(member.username)) {
+                        <div class="mb-2">
+                            <i class="fa fa-user-circle text-success"> Dostępny</i>
+                        </div>
+                    }
+                    <div>
+                        <strong>Zawód:</strong>
+                        <p>{{member.profession}}</p>
+                    </div>
+                    <div>
+                        <strong>Numer Telefonu:</strong>
+                        <p>{{member.phoneNumber}}</p>
+                    </div>
+                    <div>
+                        <strong>Age:</strong>
+                        <p>{{member.age}}</p>
+                    </div>
+                    <div>
+                        <strong>Ostatnia Aktywność:</strong>
+                        <p>{{member.lastActive | timeago}}</p>
+                    </div>
+                    <div>
+                        <strong>Pracuje od:</strong>
+                        <p>{{member.createdAt | date: 'dd MMM yyyy'}}</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="btn-group d-flex">
+                        <button (click)="selectTab('Wiadomości')" class="btn btn-success">Wiadomość</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-8">
+            <tabset class="member-tabset" #memberTabs>
+                <tab heading="Czym się zajmuje {{member.initials}} w Firmie" (selectTab)="onTabActivated($event)">
+                    <h4>O pracy</h4>
+                    <p>{{member.description}}</p>
+                </tab>
+                <tab heading="Wiadomości" (selectTab)="onTabActivated($event)">
+                    <app-membermessages 
+                    [username]="member.username"
+                    ></app-membermessages>
+                </tab>
+            </tabset>
+        </div>
+    </div>

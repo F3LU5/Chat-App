@@ -49,16 +49,16 @@ public class PresenceTracker
         }
         return Task.FromResult(onlineUsers);
     }
-    public static Task<List<string>> PolaczeniezUzytkownikiem(string username){
-        List<string> polaczenieIds;
-        if(OnlineUsers.TryGetValue(username, out var polaczenia)){
-            lock(polaczenia){
-                polaczenieIds = polaczenia.ToList();
+    public static Task<List<string>> ConnectionWithUser(string username){
+        List<string> connectionIds;
+        if(OnlineUsers.TryGetValue(username, out var connections)){
+            lock(connections){
+                connectionIds = connections.ToList();
             }
         }
         else{
-            polaczenieIds =[];
+            connectionIds =[];
         }
-        return Task.FromResult(polaczenieIds);
+        return Task.FromResult(connectionIds);
     }
 }

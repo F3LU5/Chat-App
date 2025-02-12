@@ -1,9 +1,9 @@
 using System;
 using API.DataTransferObject;
 using API.Entities;
-using API.Interfejsy;
-using API.Rozszerzenia;
-using API.Uslugi;
+using API.Interfaces;
+using API.Extensions;
+using API.Services;
 using AutoMapper;
 using Microsoft.AspNetCore.SignalR;
 
@@ -57,14 +57,14 @@ public class MessageHub(IMessageRepo messageRepo, IUserRepository userRepository
         var groupName = GetGroupName(sender.UserName, recipient.UserName);
         var group = await messageRepo.GetMessageGroup(groupName);
 
-        if (group != null && group.Polaczenia.Any(x => x.Username == recipient.UserName))
+        if (group != null && group.Connections.Any(x => x.Username == recipient.UserName))
         {
             message.DateRead = DateTime.UtcNow;
         }
         else{
-            var polaczenia = await PresenceTracker.PolaczeniezUzytkownikiem(recipient.UserName);
-            if(polaczenia != null && polaczenia?.Count != null){
-                await presenceHub.Clients.Clients(polaczenia).SendAsync("NewMessageReceived", new {username = sender.UserName, onas = sender.Onas});
+            var connections = await PresenceTracker.ConnectionWithUser(recipient.UserName);
+            if(connections != null && connections?.Count != null){
+                await presenceHub.Clients.Clients(connections).SendAsync("NewMessageReceived", new {username = sender.UserName, initials = sender.Initials});
             }
         }
         messageRepo.AddMessage(message);
@@ -80,22 +80,22 @@ public class MessageHub(IMessageRepo messageRepo, IUserRepository userRepository
     {
         var username =Context.User?.GetUsername() ?? throw new Exception("Nie mozna pobrać nazwy uzytkownika");
         var group = await messageRepo.GetMessageGroup(groupName);
-        var polaczenie = new Polaczenie{PolaczenieId = Context.ConnectionId, Username = username};
+        var connection = new Connection{ConnectionId = Context.ConnectionId, Username = username};
 
         if(group == null){
             group = new Group{Name = groupName};
             messageRepo.AddGroup(group);
         }
-        group.Polaczenia.Add(polaczenie);
+        group.Connections.Add(connection);
         return await messageRepo.SaveAllAsync();
     }
 
     private async Task RemoveMessageGroup()
     {
-        var polaczenie = await messageRepo.GetPolaczenie(Context.ConnectionId);
-        if(polaczenie != null)
+        var connection = await messageRepo.GetConnection(Context.ConnectionId);
+        if(connection != null)
         {
-            messageRepo.RemoveConnectrion(polaczenie);
+            messageRepo.RemoveConnectrion(connection);
             await messageRepo.SaveAllAsync();
         }
     }

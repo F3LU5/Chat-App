@@ -1,0 +1,27 @@
+<body>
+  <div style="background-image: url('assets/screenformbg.png');" class="container">
+      <div style="text-align: center; position: relative;">
+    
+        @if (!registerMode) {
+          <h1 class="display-4 animate__animated animate__fadeIn animate__delay-1s" style="color: white;">Witaj w naszej aplikacji czatowej!</h1>
+          <p class="lead animate__animated animate__fadeIn animate__delay-2s" style="color: white;">
+            Aplikacja stworzona została z myślą o firmach, którym przede wszystkim zależy na zachowaniu bezpieczeństwa danych osobowych swoich pracowników.
+          </p>
+    
+          <div class="mt-4">
+            <button (click)="registerToggle()" class="btn btn-primary btn-lg me-2 animate__animated animate__zoomIn animate__delay-4s">Rozpocznij rejestrację</button>
+  
+          </div>
+        } @else {
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-12 col-md-8 col-lg-6">
+                <app-register (cancelRegister)="cancelRegister($event)"></app-register>
+              </div>
+            </div>
+          </div>
+        }
+    
+      </div>
+    </div>
+    

@@ -3,18 +3,18 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using API.Entities;
-using API.Interfejsy;
+using API.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 
-namespace API.Uslugi;
+namespace API.Services;
 
-public class TokenService(IConfiguration configuration, UserManager<AppUser>userManager) : UslugiToken
+public class TokenService(IConfiguration configuration, UserManager<AppUser>userManager) : TokenServices
 {
-    public async Task<string> StworzToken(AppUser user){
-        var kluczTokenu = configuration["KluczTokenu"]?? throw new Exception("Nie można uzyskać dostępu do KluczaTokenu z appsettings");
-        if (kluczTokenu.Length < 64) throw new Exception("Twój KluczTokenu musi być dłuższy");
-        var klucz = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(kluczTokenu));
+    public async Task<string> CreateToken(AppUser user){
+        var tokenKey = configuration["TokenKey"]?? throw new Exception("Nie można uzyskać dostępu do KluczaTokenu z appsettings");
+        if (tokenKey.Length < 64) throw new Exception("Twój KluczTokenu musi być dłuższy");
+        var klucz = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenKey));
 
         if(user.UserName == null) throw new Exception("Nie ma nazwy uzytkownika tego uzytkownika");
 

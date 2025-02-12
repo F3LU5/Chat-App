@@ -1,0 +1,64 @@
+<div class="card">
+    <div class="card-body">
+        @if (messageService.messageThread().length === 0) {
+            <p>Nie ma jeszcze Wiadomości</p>
+        }
+        @else {
+            <div class="chat-container-wrapper">
+                <ul class="chat">
+                    @for (message of messageService.messageThread(); track message.id) {
+                        <li class="{{message.senderUsername === username() ? 'sent' : 'received'}}">
+                            <div class="chat-container">
+                                @if (message.senderUsername !== username()) {
+                                    <span class="chat-img">
+                                        <img class="rounded-circle" src="{{message.senderPhotoUrl || './assets/user.png'}}" alt="zdjęcie nadawcy">
+                                    </span>
+                                }
+                                <div class="chat-body">
+                                    <div class="message-content">
+                                        <p>{{message.content}}</p>
+                                        <small class="text-muted">
+                                            {{message.messageSent | timeago}}
+                                            @if (!message.dateRead && message.senderUsername !== username()) {
+                                                <span class="text-danger">(nieprzeczytane) </span>
+                                            }
+                                            @if (message.dateRead && message.senderUsername !== username()) {
+                                                <span class="text-success">(przeczytane {{message.dateRead | timeago}})</span>
+                                            }
+                                        </small>
+                                    </div>
+                                </div>
+                                @if (message.senderUsername === username()) {
+                                    <span class="chat-img">
+                                        <img class="rounded-circle" src="{{message.senderPhotoUrl}}" alt="zdjęcie nadawcy">
+                                    </span>
+                                }
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
+    </div>
+    <div class="card-footer">
+        <form #messageForm="ngForm" (ngSubmit)="sendMessage()">
+          <div class="input-group">
+            <input 
+              name="messageContent"
+              required
+              [(ngModel)]="messageContent"
+              type="text" 
+              class="form-control input-sm" 
+              placeholder="Wyślij wiadomość">
+      
+            <app-speech-to-text (textCaptured)="messageContent = $event"></app-speech-to-text>
+      
+            <div class="input-group-append">
+                <button [disabled]="!messageForm.valid" class="btn" type="submit">
+                    <i class="fa fa-arrow-right"></i> 
+                </button>
+            </div>
+          </div>
+        </form>
+    </div>
+</div>
