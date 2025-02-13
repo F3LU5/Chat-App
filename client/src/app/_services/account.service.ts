@@ -4,6 +4,7 @@ import { map, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { PresenceService } from './presence.service';
 import { User } from '../_models/user';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 interface RegisterForm {
   dateOfBirth: string;
@@ -27,39 +28,44 @@ interface LoginForm {
 export class AccountService {
   private http = inject(HttpClient);
   private presenceService = inject(PresenceService);
+  private jwtHelper = new JwtHelperService();
   baseURL = environment.apiUrl;
   currentUser = signal<User | null>(null);
+
   roles = computed(() => {
     const user = this.currentUser();
-    if(user && user.token) {
-      const role = JSON.parse(atob(user.token.split('.')[1])).role
-      return Array.isArray(role) ? role : [role];
+    if (user?.token) {
+      const decodedToken = this.jwtHelper.decodeToken(user.token);
+      return Array.isArray(decodedToken.role) ? decodedToken.role : [decodedToken.role];
     }
     return [];
-  })
+  });
 
   login(loginForm: LoginForm): Observable<void> {
-    return this.http.post<User>(this.baseURL + 'account/login', loginForm).pipe(map(user => {
-      if (user) {
-        this.setCurrentUser(user);
-      }
-    }))
+    return this.http.post<User>(this.baseURL + 'account/login', loginForm).pipe(
+      map(user => {
+        if (user) {
+          this.setCurrentUser(user);
+        }
+      })
+    );
   }
 
   register(registerData: RegisterForm): Observable<User> {
-    return this.http.post<User>(this.baseURL + 'account/register', registerData).pipe(map(user => {
-      if (user) {
-        this.setCurrentUser(user);
-      }
-      return user;
-    }))
-
+    return this.http.post<User>(this.baseURL + 'account/register', registerData).pipe(
+      map(user => {
+        if (user) {
+          this.setCurrentUser(user);
+        }
+        return user;
+      })
+    );
   }
 
   setCurrentUser(user: User): void {
-    localStorage.setItem('user', JSON.stringify(user))
-      this.currentUser.set(user);
-      this.presenceService.createHubConnectrion(user)
+    localStorage.setItem('user', JSON.stringify(user));
+    this.currentUser.set(user);
+    this.presenceService.createHubConnectrion(user);
   }
 
   logout(): void {
@@ -67,5 +73,4 @@ export class AccountService {
     this.currentUser.set(null);
     this.presenceService.stopHubConnection();
   }
-
 }
